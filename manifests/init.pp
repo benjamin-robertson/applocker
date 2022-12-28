@@ -21,7 +21,7 @@ class applocker (
   file { 'policy file':
     ensure   => present,
     path     => 'c:\temp\applocker_puppet.xml',
-    contents => epp('applocker\xmlrule.epp', {
+    contents => epp('applocker/xmlrule.epp', {
       'exec_applocker_rules'   => $exec_applocker_rules,
       'msi_applocker_rules'    => $msi_applocker_rules,
       'appx_applocker_rules'   => $appx_applocker_rules,
