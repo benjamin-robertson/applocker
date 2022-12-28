@@ -35,4 +35,9 @@ class applocker (
   }
   notify{"exec_applocker_rules lenght is ${exec_applocker_rules.length}":}
   notify{"Applocker rules are ${applocker::xml_tohash($facts['applocker_rules'])}":}
+  file { 'policy from fact':
+    ensure  => present,
+    path    => 'c:\temp\applocker_from_fact.xml',
+    content => applocker::hash_toxml($facts['applocker_rules']),
+  }
 }
