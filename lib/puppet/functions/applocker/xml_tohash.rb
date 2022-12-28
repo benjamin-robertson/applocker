@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'xmlsimple'
 
 # https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
