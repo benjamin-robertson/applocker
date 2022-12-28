@@ -10,14 +10,24 @@
       String $packaged_app_rules,
 | -%>
 <AppLockerPolicy Version="1">
+<% if $appx_applocker_rules.length >= 1 { %>
 <RuleCollection Type="Appx" EnforcementMode="<%= $packaged_app_rules %>">
 </RuleCollection>
+<% } %>
+<% if $dll_applocker_rules.length >= 1 { %>
 <RuleCollection Type="Dll" EnforcementMode="<%= $dll_rules %>">
 </RuleCollection>
+<% } %>
+<% if $exec_applocker_rules.length >= 1 { %>
 <RuleCollection Type="Exe" EnforcementMode="<%= $executable_rules %>">
 </RuleCollection>
+<% } %>
+<% if $msi_applocker_rules.length >= 1 { %>
 <RuleCollection Type="Msi" EnforcementMode="<%= $msi_rules %>">
 </RuleCollection>
+<% } %>
+<% if $script_applocker_rules.length >= 1 { %>
 <RuleCollection Type="Script" EnforcementMode="<%= $script_rules %>">
 </RuleCollection>
+<% } %>
 </AppLockerPolicy>
