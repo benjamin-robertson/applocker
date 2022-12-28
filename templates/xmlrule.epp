@@ -1,0 +1,23 @@
+<%- | Hash   $exec_applocker_rules,
+      Hash   $msi_applocker_rules,
+      Hash   $appx_applocker_rules,
+      Hash   $script_applocker_rules,
+      Hash   $dll_applocker_rules,
+      String $executable_rules,
+      String $msi_rules,
+      String $dll_rules,
+      String $script_rules,
+      String $packaged_app_rules,
+| -%>
+<AppLockerPolicy Version="1">
+<RuleCollection Type="Appx" EnforcementMode="<%= $packaged_app_rules %>">
+</RuleCollection>
+<RuleCollection Type="Dll" EnforcementMode="<%= $dll_rules %>">
+</RuleCollection>
+<RuleCollection Type="Exe" EnforcementMode="<%= $executable_rules %>">
+</RuleCollection>
+<RuleCollection Type="Msi" EnforcementMode="<%= $msi_rules %>">
+</RuleCollection>
+<RuleCollection Type="Script" EnforcementMode="<%= $script_rules %>">
+</RuleCollection>
+</AppLockerPolicy>
