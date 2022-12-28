@@ -13,6 +13,6 @@ describe :applocker_rules, type: :fact do
   end
 
   it 'returns a value' do
-    expect(fact.value).to eq('hello facter')
+    expect(fact.value).to eq(nil)
   end
 end
