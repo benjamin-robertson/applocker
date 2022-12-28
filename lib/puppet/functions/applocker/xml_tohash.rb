@@ -6,7 +6,7 @@ require 'xmlsimple'
 Puppet::Functions.create_function(:"applocker::xml_tohash") do
   dispatch :xml_tohash do
     param 'String', :xml_content
-    return_type hash
+    return_type 'Hash'
   end
   # the function below is called by puppet and and must match
   # the name of the puppet function above. You can set your
