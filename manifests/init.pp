@@ -33,4 +33,5 @@ class applocker (
       'script_rules'           => $script_rules,
       'packaged_app_rules'     => $packaged_app_rules,}),
   }
+  notify{"exec_applocker_rules lenght is ${exec_applocker_rules.length}":}
 }
