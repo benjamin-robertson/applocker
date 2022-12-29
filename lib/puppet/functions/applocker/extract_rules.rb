@@ -4,7 +4,7 @@
 Puppet::Functions.create_function(:"applocker::extract_rules") do
   dispatch :extract_rules do
     param 'Hash', :rules
-    return_type 'Hash'
+    return_type 'Tuple'
   end
   # the function below is called by puppet and and must match
   # the name of the puppet function above. You can set your
