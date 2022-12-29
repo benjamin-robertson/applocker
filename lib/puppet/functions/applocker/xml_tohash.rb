@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'xmlsimple'
-require 'rexml/document'
 
 # https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
 Puppet::Functions.create_function(:"applocker::xml_tohash") do
