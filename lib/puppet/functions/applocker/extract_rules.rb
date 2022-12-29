@@ -12,22 +12,44 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
   # so change x to suit your needs although only one parameter is required
   # as defined in the dispatch method.
   def extract_rules(rules)
-    # Create hash strucuture
-    # rule_hash = {
-    #   'Appx'   => [],
-    #   'Dll'    => [],
-    #   'Exe'    => [],
-    #   'Msi'    => [],
-    #   'Script' => []
-    # }
-    # rules['RuleCollection'].each do |_index, array|
-    #   array.each do |_index, value|
-    #     hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
-    #     rule_hash[value['Appx']].push(hash_tmp)
-    #   end
-    # end
-    # rule_hash
-    rules['RuleCollection']
+    # Create hash strucutures
+    rule_status = {
+      'Appx'   => '',
+      'Dll'    => '',
+      'Exe'    => '',
+      'Msi'    => '',
+      'Script' => ''
+    }
+    rule_hash = {
+      'Appx'   => [],
+      'Dll'    => [],
+      'Exe'    => [],
+      'Msi'    => [],
+      'Script' => []
+    }
+    name_to_id = {}
+
+    # Loop through Rules and populate hash values
+    rules['RuleCollection'].each do |array|
+      rule_status[array['Type']] = array['EnforcementMode']
+      if array['FilePathRule']
+        array['FilePathRule'].each do |value|
+          hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
+          rule_hash[array['Type']].push(hash_tmp)
+          name_to_id[value['Name']] = value['Id']
+        end
+      end
+      if array['FilePublisherRule']
+        array['FilePublisherRule'].each do |value|
+          hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
+          rule_hash[array['Type']].push(hash_tmp)
+          name_to_id[value['Name']] = value['Id']
+        end
+      end
+      # need to code in filehash rule. But need to get this working first. 
+    end
+    return_hash = { 'rule_status' => rule_status, 'rule_hash' => rule_hash, 'name_to_id' => name_to_id }
+    return_hash
   end
 
   # you can define other helper methods in this code block as well
