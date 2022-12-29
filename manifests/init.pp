@@ -46,4 +46,5 @@ class applocker (
 
   # Break down structure using function, We want to retrieve all the names of each rules type and return
   $rule_results = applocker::extract_rules($hash_policy)
+  notify{"rule results ${rule_results}":}
 }

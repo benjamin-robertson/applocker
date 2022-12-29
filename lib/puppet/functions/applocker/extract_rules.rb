@@ -12,11 +12,21 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
   # so change x to suit your needs although only one parameter is required
   # as defined in the dispatch method.
   def extract_rules(rules)
+    # Create hash strucuture
+    rule_hash = {
+      "Appx"   => [],
+      "Dll"    => [],
+      "Exe"    => [],
+      "Msi"    => [],
+      "Script" => []
+    }
     rules['RuleCollection'].each do |index, array|
-      puts "index is #{index} array is #{array}"
-      Puppet::Util::Warnings('test')
+      array.each do |index, value|
+        hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
+        rule_hash[value['Appx']].push(hash_tmp)
+      end
     end
-    {}
+    rule_hash
   end
 
   # you can define other helper methods in this code block as well
