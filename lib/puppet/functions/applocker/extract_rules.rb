@@ -13,13 +13,13 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
   # as defined in the dispatch method.
   def extract_rules(rules)
     # Create hash strucuture
-    rule_hash = {
-      'Appx'   => [],
-      'Dll'    => [],
-      'Exe'    => [],
-      'Msi'    => [],
-      'Script' => []
-    }
+    # rule_hash = {
+    #   'Appx'   => [],
+    #   'Dll'    => [],
+    #   'Exe'    => [],
+    #   'Msi'    => [],
+    #   'Script' => []
+    # }
     # rules['RuleCollection'].each do |_index, array|
     #   array.each do |_index, value|
     #     hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
