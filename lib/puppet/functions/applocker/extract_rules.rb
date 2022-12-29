@@ -14,6 +14,7 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
   def extract_rules(rules)
     rules['RuleCollection'].each do |index, array|
       puts "index is #{index} array is #{array}"
+      Puppet::Util::Warnings("test")
     end
     {}
   end
