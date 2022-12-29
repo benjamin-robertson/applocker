@@ -20,13 +20,14 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
       'Msi'    => [],
       'Script' => []
     }
-    rules['RuleCollection'].each do |_index, array|
-      array.each do |_index, value|
-        hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
-        rule_hash[value['Appx']].push(hash_tmp)
-      end
-    end
-    rule_hash
+    # rules['RuleCollection'].each do |_index, array|
+    #   array.each do |_index, value|
+    #     hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
+    #     rule_hash[value['Appx']].push(hash_tmp)
+    #   end
+    # end
+    # rule_hash
+    rules['RuleCollection']
   end
 
   # you can define other helper methods in this code block as well
