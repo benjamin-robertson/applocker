@@ -5,17 +5,18 @@
 # @example
 #   include applocker
 class applocker (
-  Hash $exec_applocker_rules = {},
-  Hash $msi_applocker_rules = {},
-  Hash $appx_applocker_rules = {},
-  Hash $script_applocker_rules = {},
-  Hash $dll_applocker_rules = {},
-  Enum['Enabled','AuditOnly'] $executable_rules = 'AuditOnly',
-  Enum['Enabled','AuditOnly'] $msi_rules = 'AuditOnly',
-  Enum['Enabled','AuditOnly'] $dll_rules = 'AuditOnly',
-  Enum['Enabled','AuditOnly'] $script_rules = 'AuditOnly',
-  Enum['Enabled','AuditOnly'] $packaged_app_rules = 'AuditOnly',
-  Boolean $start_service = true,
+  Hash                        $exec_applocker_rules   = {},
+  Hash                        $msi_applocker_rules    = {},
+  Hash                        $appx_applocker_rules   = {},
+  Hash                        $script_applocker_rules = {},
+  Hash                        $dll_applocker_rules    = {},
+  Enum['Enabled','AuditOnly'] $executable_rules       = 'AuditOnly',
+  Enum['Enabled','AuditOnly'] $msi_rules              = 'AuditOnly',
+  Enum['Enabled','AuditOnly'] $dll_rules              = 'AuditOnly',
+  Enum['Enabled','AuditOnly'] $script_rules           = 'AuditOnly',
+  Enum['Enabled','AuditOnly'] $packaged_app_rules     = 'AuditOnly',
+  Boolean                     $purge_existing_rules   = true,
+  Boolean                     $start_service          = true,
 ) {
   # create xml file
   file { 'policy file':
@@ -42,4 +43,7 @@ class applocker (
     path    => 'c:\temp\applocker_from_fact.xml',
     content => applocker::hash_toxml($hash_policy),
   }
+
+  # Break down structure using function, We want to retrieve all the names of each rules type and return
+  $rule_results = extract_rules($hash_policy)
 }
