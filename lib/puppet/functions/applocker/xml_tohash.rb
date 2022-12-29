@@ -15,7 +15,7 @@ Puppet::Functions.create_function(:"applocker::xml_tohash") do
   # as defined in the dispatch method.
   def xml_tohash(xml_content)
     # XmlSimple.xml_in(xml_content)
-    XmlSimple.xml_in(xml_content, { keep_root: true })
+    XmlSimple.xml_in(xml_content, { keep_root: false })
   end
 
   # you can define other helper methods in this code block as well
