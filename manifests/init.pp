@@ -36,7 +36,7 @@ class applocker (
   }
   #notify{"exec_applocker_rules lenght is ${exec_applocker_rules.length}":}
   #notify{"Applocker rules are ${applocker::xml_tohash($facts['applocker_rules'])}":}
-  $hash_policy = applocker::xml_tohash($facts['applocker_rules'])
+  #$hash_policy = applocker::xml_tohash($facts['applocker_rules'])
   #notify{"applocker hash type ${type($hash_policy)}":}
   # file { 'policy from fact':
   #   ensure  => present,
@@ -45,5 +45,5 @@ class applocker (
   # }
 
   # Break down structure using function, We want to retrieve all the names of each rules type and return
-  $rule_results = extract_rules($hash_policy)
+  #$rule_results = extract_rules($hash_policy)
 }
