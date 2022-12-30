@@ -28,7 +28,6 @@
 <%     } -%>
 </FilePathRule>
    <% } -%>
-<% } -%>
 </RuleCollection>
 <% } -%>
 <% if $dll_applocker_rules.length >= 1 { -%>
@@ -49,7 +48,6 @@
 <%     } -%>
 </FilePathRule>
    <% } -%>
-<% } -%>
 </RuleCollection>
 <% } -%>
 <% if $exec_applocker_rules.length >= 1 { -%>
@@ -92,7 +90,6 @@
 <%     } -%>
 </FilePathRule>
    <% } -%>
-<% } -%>
 </RuleCollection>
 <% } -%>
 <% if $script_applocker_rules.length >= 1 { -%>
@@ -113,7 +110,6 @@
 <%     } -%>
 </FilePathRule>
    <% } -%>
-<% } -%>
 </RuleCollection>
 <% } -%>
 </AppLockerPolicy>
