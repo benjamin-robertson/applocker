@@ -26,8 +26,15 @@
 <Conditions>
 <%     $value['conditions'].each | $condition, $path | { -%>
         <FilePathCondition Path="<%= $path %>" />
-      <% } -%>
+<%       } -%>
 </Conditions>
+<%     if $value['exceptions'] { -%>
+<Exceptions>
+<%       $value['exceptions'].each | $index, $exception | { -%>
+        <FilePathCondition Path="<%= $exception %>" />
+<%       } -%>
+</Exceptions>
+<%     } -%>
 </FilePathRule>
    <% } -%>
 <% } -%>
