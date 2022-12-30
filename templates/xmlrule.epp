@@ -28,6 +28,7 @@
         <FilePathCondition Path="<%= $path %>" />
       <% } %>
 </Conditions>
+</FilePathRule>
    <% } %>
 <% } %>
 </RuleCollection>
