@@ -19,11 +19,11 @@ Puppet::Functions.create_function(:"applocker::get_id") do
     applocker_rules.each do |key, _value|
       # Check if the id is already defined.
       if name_to_id.key?(key)
-        applocker_with_id[key][id] = name_to_id[key]
+        applocker_with_id[key]['id'] = name_to_id[key]
       else
         # we need to generate the key
         id = "#{SecureRandom.hex(4)}-#{SecureRandom.hex(2)}-#{SecureRandom.hex(2)}-#{SecureRandom.hex(2)}-#{SecureRandom.hex(6)}"
-        applocker_with_id[key][id] = id
+        applocker_with_id[key]['id'] = id
       end
     end
     applocker_with_id
