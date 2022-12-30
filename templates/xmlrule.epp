@@ -12,6 +12,7 @@
 <AppLockerPolicy Version="1">
 <% if $appx_applocker_rules.length >= 1 { %>
 <RuleCollection Type="Appx" EnforcementMode="<%= $packaged_app_rules %>">
+
 </RuleCollection>
 <% } %>
 <% if $dll_applocker_rules.length >= 1 { %>
