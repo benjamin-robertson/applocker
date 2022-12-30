@@ -47,11 +47,18 @@ class applocker (
 
   # Break down structure using function, We want to retrieve all the names of each rules type and return
   $rule_results = applocker::extract_rules($hash_policy)
-  notify{"rule results ${rule_results}":}
+  #notify{"rule results ${rule_results}":}
 
-  # Generate id for each rule, won't check the existing rules first. 
-  $rule_types = ['$exec_applocker_rules', '$msi_applocker_rules', '$appx_applocker_rules', '$script_applocker_rules', '$dll_applocker_rules']
+  # Generate id for each rule, or get from existing rule. 
   $exec_applocker_rules_with_id = applocker::get_id($exec_applocker_rules, $rule_results['name_to_id'])
+  $msi_applocker_rules_with_id = applocker::get_id($msi_applocker_rules, $rule_results['name_to_id'])
+  $appx_applocker_rules_with_id = applocker::get_id($appx_applocker_rules, $rule_results['name_to_id'])
+  $script_applocker_rules_with_id = applocker::get_id($script_applocker_rules, $rule_results['name_to_id'])
+  $dll_applocker_rules_with_id = applocker::get_id($dll_applocker_rules, $rule_results['name_to_id'])
   notify{"exec with id ${$exec_applocker_rules_with_id}":}
+  notify{"msi with id ${$msi_applocker_rules_with_id}":}
+  notify{"appx with id ${$appx_applocker_rules_with_id}":}
+  notify{"script with id ${$script_applocker_rules_with_id}":}
+  notify{"dll with id ${$dll_applocker_rules_with_id}":}
 }
 # lint:endignore
