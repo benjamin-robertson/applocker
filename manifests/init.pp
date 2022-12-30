@@ -46,20 +46,20 @@ class applocker (
   notify{"dll with id ${$dll_applocker_rules_with_id}":}
 
   # create xml file
-  # file { 'policy file':
-  #   ensure  => present,
-  #   path    => 'c:\temp\applocker_puppet.xml',
-  #   content => epp('applocker/xmlrule.epp', {
-  #     'exec_applocker_rules'   => $exec_applocker_rules_with_id,
-  #     'msi_applocker_rules'    => $msi_applocker_rules_with_id,
-  #     'appx_applocker_rules'   => $appx_applocker_rules_with_id,
-  #     'script_applocker_rules' => $script_applocker_rules_with_id,
-  #     'dll_applocker_rules'    => $dll_applocker_rules_with_id,
-  #     'executable_rules'       => $executable_rules,
-  #     'msi_rules'              => $msi_rules,
-  #     'dll_rules'              => $dll_rules,
-  #     'script_rules'           => $script_rules,
-  #     'packaged_app_rules'     => $packaged_app_rules,}),
-  # }
+  file { 'policy file':
+    ensure  => present,
+    path    => 'c:\temp\applocker_puppet.xml',
+    content => epp('applocker/xmlrule.epp', {
+      'exec_applocker_rules'   => $exec_applocker_rules_with_id,
+      'msi_applocker_rules'    => $msi_applocker_rules_with_id,
+      'appx_applocker_rules'   => $appx_applocker_rules_with_id,
+      'script_applocker_rules' => $script_applocker_rules_with_id,
+      'dll_applocker_rules'    => $dll_applocker_rules_with_id,
+      'executable_rules'       => $executable_rules,
+      'msi_rules'              => $msi_rules,
+      'dll_rules'              => $dll_rules,
+      'script_rules'           => $script_rules,
+      'packaged_app_rules'     => $packaged_app_rules,}),
+  }
 }
 # lint:endignore
