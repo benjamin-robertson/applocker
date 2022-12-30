@@ -12,10 +12,44 @@
 <AppLockerPolicy Version="1">
 <% if $appx_applocker_rules.length >= 1 { -%>
 <RuleCollection Type="Appx" EnforcementMode="<%= $packaged_app_rules %>">
+<%   if $value['rule_type'] == 'path' { -%>
+<FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
+<Conditions>
+<%     $value['conditions'].each | $condition, $path | { -%>
+        <FilePathCondition Path="<%= $path %>" />
+<%       } -%>
+</Conditions>
+<%     if $value['exceptions'] { -%>
+<Exceptions>
+<%       $value['exceptions'].each | $index, $exception | { -%>
+        <FilePathCondition Path="<%= $exception %>" />
+<%       } -%>
+</Exceptions>
+<%     } -%>
+</FilePathRule>
+   <% } -%>
+<% } -%>
 </RuleCollection>
 <% } -%>
 <% if $dll_applocker_rules.length >= 1 { -%>
 <RuleCollection Type="Dll" EnforcementMode="<%= $dll_rules %>">
+<%   if $value['rule_type'] == 'path' { -%>
+<FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
+<Conditions>
+<%     $value['conditions'].each | $condition, $path | { -%>
+        <FilePathCondition Path="<%= $path %>" />
+<%       } -%>
+</Conditions>
+<%     if $value['exceptions'] { -%>
+<Exceptions>
+<%       $value['exceptions'].each | $index, $exception | { -%>
+        <FilePathCondition Path="<%= $exception %>" />
+<%       } -%>
+</Exceptions>
+<%     } -%>
+</FilePathRule>
+   <% } -%>
+<% } -%>
 </RuleCollection>
 <% } -%>
 <% if $exec_applocker_rules.length >= 1 { -%>
@@ -42,10 +76,44 @@
 <% } -%>
 <% if $msi_applocker_rules.length >= 1 { -%>
 <RuleCollection Type="Msi" EnforcementMode="<%= $msi_rules %>">
+<%   if $value['rule_type'] == 'path' { -%>
+<FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
+<Conditions>
+<%     $value['conditions'].each | $condition, $path | { -%>
+        <FilePathCondition Path="<%= $path %>" />
+<%       } -%>
+</Conditions>
+<%     if $value['exceptions'] { -%>
+<Exceptions>
+<%       $value['exceptions'].each | $index, $exception | { -%>
+        <FilePathCondition Path="<%= $exception %>" />
+<%       } -%>
+</Exceptions>
+<%     } -%>
+</FilePathRule>
+   <% } -%>
+<% } -%>
 </RuleCollection>
 <% } -%>
 <% if $script_applocker_rules.length >= 1 { -%>
 <RuleCollection Type="Script" EnforcementMode="<%= $script_rules %>">
+<%   if $value['rule_type'] == 'path' { -%>
+<FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
+<Conditions>
+<%     $value['conditions'].each | $condition, $path | { -%>
+        <FilePathCondition Path="<%= $path %>" />
+<%       } -%>
+</Conditions>
+<%     if $value['exceptions'] { -%>
+<Exceptions>
+<%       $value['exceptions'].each | $index, $exception | { -%>
+        <FilePathCondition Path="<%= $exception %>" />
+<%       } -%>
+</Exceptions>
+<%     } -%>
+</FilePathRule>
+   <% } -%>
+<% } -%>
 </RuleCollection>
 <% } -%>
 </AppLockerPolicy>
