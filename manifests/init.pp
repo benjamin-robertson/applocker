@@ -62,7 +62,7 @@ class applocker (
       'packaged_app_rules'     => $packaged_app_rules,}),
   }
   # Check if match
-  if $facts['applocker_rules'] == epp('applocker/xmlrule.epp', {
+  if $facts['applocker_rules'] == strip(epp('applocker/xmlrule.epp', {
       'exec_applocker_rules'   => $exec_applocker_rules_with_id,
       'msi_applocker_rules'    => $msi_applocker_rules_with_id,
       'appx_applocker_rules'   => $appx_applocker_rules_with_id,
@@ -72,7 +72,7 @@ class applocker (
       'msi_rules'              => $msi_rules,
       'dll_rules'              => $dll_rules,
       'script_rules'           => $script_rules,
-      'packaged_app_rules'     => $packaged_app_rules,}) {
+      'packaged_app_rules'     => $packaged_app_rules,})) {
         notify { 'I am the same pls':}
       }
 }
