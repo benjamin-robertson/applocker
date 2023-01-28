@@ -39,11 +39,11 @@ class applocker (
   $appx_applocker_rules_with_id = applocker::get_id($appx_applocker_rules, $rule_results['name_to_id'])
   $script_applocker_rules_with_id = applocker::get_id($script_applocker_rules, $rule_results['name_to_id'])
   $dll_applocker_rules_with_id = applocker::get_id($dll_applocker_rules, $rule_results['name_to_id'])
-  notify{"exec with id ${$exec_applocker_rules_with_id}":}
-  notify{"msi with id ${$msi_applocker_rules_with_id}":}
-  notify{"appx with id ${$appx_applocker_rules_with_id}":}
-  notify{"script with id ${$script_applocker_rules_with_id}":}
-  notify{"dll with id ${$dll_applocker_rules_with_id}":}
+  # notify{"exec with id ${$exec_applocker_rules_with_id}":}
+  # notify{"msi with id ${$msi_applocker_rules_with_id}":}
+  # notify{"appx with id ${$appx_applocker_rules_with_id}":}
+  # notify{"script with id ${$script_applocker_rules_with_id}":}
+  # notify{"dll with id ${$dll_applocker_rules_with_id}":}
 
   # create xml file
   file { 'policy file':

@@ -31,6 +31,7 @@
 </FilePathRule>
    <% } -%>
 <%# File publisher rule %>
+<% notify{"my bad value is ${value}":} -%>
 <%   if $value['rule_type]'] == 'publisher' { -%>
 <FilePublisherRule="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
 <Conditions>
