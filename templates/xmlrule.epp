@@ -36,9 +36,7 @@
 <Conditions>
 <%     $value['conditions'].each | $condition, $rule | { -%>
 <% notify{"rule is ${rule}":} %>
-<%#        <FilePublisherCondition PublisherName="<%= $rule['publisher']%>" ProductName="<%= $rule['product']%>" BinaryName="<%= $rule['binaryname']%>"> %>
-       <%# <BinaryVersionRange LowSection="<%= $rule['lo_version']%>" HighSection="<%= $rule['hi_version']%>" /> %>
-       <%# </FilePublisherCondition> %>
+
 <%       } -%>
 </Conditions>
 <%     if $value['exceptions'] { -%>
