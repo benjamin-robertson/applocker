@@ -47,6 +47,7 @@
 <%     } -%>
 </FilePublisherRule>
 <% } -%>
+<% } -%>
 </RuleCollection>
 <% } -%>
 <% if $dll_applocker_rules.length >= 1 { -%>
