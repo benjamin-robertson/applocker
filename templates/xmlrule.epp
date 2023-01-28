@@ -13,6 +13,29 @@
 <% if $appx_applocker_rules.length >= 1 { -%>
 <RuleCollection Type="Appx" EnforcementMode="<%= $packaged_app_rules %>">
 <% $appx_applocker_rules.each | $key, $value | { -%>
+<%# File path rule  ----- NOT REQUIRED for app, removed to avoid issues -%>
+<%# File publisher rule -%>
+<%   if $value['rule_type'] == 'publisher' { -%>
+<FilePublisherRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
+<Conditions>
+        <FilePublisherCondition PublisherName="<%= $value['conditions']['publisher']%>" ProductName="<%= $value['conditions']['product']%>" BinaryName="<%= $value['conditions']['binaryname']%>">
+        <BinaryVersionRange LowSection="<%= $value['conditions']['lo_version']%>" HighSection="<%= $value['conditions']['hi_version']%>" />
+        </FilePublisherCondition>
+</Conditions>
+<%     if $value['exceptions'] { -%>
+<Exceptions>
+<%# need to complete this -%>
+</Exceptions>
+<%     } -%>
+</FilePublisherRule>
+<% } -%>
+<%# need to complete File hash ----- NOT REQUIRED for appx -%>
+<% } -%>
+</RuleCollection>
+<% } -%>
+<% if $dll_applocker_rules.length >= 1 { -%>
+<RuleCollection Type="Dll" EnforcementMode="<%= $dll_rules %>">
+<% $dll_applocker_rules.each | $key, $value | { -%>
 <%# File path rule -%>
 <%   if $value['rule_type'] == 'path' { -%>
 <FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
@@ -45,34 +68,14 @@
 <%     } -%>
 </FilePublisherRule>
 <% } -%>
-<% } -%>
-</RuleCollection>
-<% } -%>
-<% if $dll_applocker_rules.length >= 1 { -%>
-<RuleCollection Type="Dll" EnforcementMode="<%= $dll_rules %>">
-<% $dll_applocker_rules.each | $key, $value | { -%>
-<%   if $value['rule_type'] == 'path' { -%>
-<FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
-<Conditions>
-<%     $value['conditions'].each | $condition, $path | { -%>
-        <FilePathCondition Path="<%= $path %>" />
-<%       } -%>
-</Conditions>
-<%     if $value['exceptions'] { -%>
-<Exceptions>
-<%       $value['exceptions'].each | $index, $exception | { -%>
-        <FilePathCondition Path="<%= $exception %>" />
-<%       } -%>
-</Exceptions>
-<%     } -%>
-</FilePathRule>
-   <% } -%>
+<%# need to complete File hash -%>
 <% } -%>
 </RuleCollection>
 <% } -%>
 <% if $exec_applocker_rules.length >= 1 { -%>
 <RuleCollection Type="Exe" EnforcementMode="<%= $executable_rules %>">
 <% $exec_applocker_rules.each | $key, $value | { -%>
+<%# File path rule -%>
 <%   if $value['rule_type'] == 'path' { -%>
 <FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
 <Conditions>
@@ -89,12 +92,29 @@
 <%     } -%>
 </FilePathRule>
    <% } -%>
+<%# File publisher rule -%>
+<%   if $value['rule_type'] == 'publisher' { -%>
+<FilePublisherRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
+<Conditions>
+        <FilePublisherCondition PublisherName="<%= $value['conditions']['publisher']%>" ProductName="<%= $value['conditions']['product']%>" BinaryName="<%= $value['conditions']['binaryname']%>">
+        <BinaryVersionRange LowSection="<%= $value['conditions']['lo_version']%>" HighSection="<%= $value['conditions']['hi_version']%>" />
+        </FilePublisherCondition>
+</Conditions>
+<%     if $value['exceptions'] { -%>
+<Exceptions>
+<%# need to complete this -%>
+</Exceptions>
+<%     } -%>
+</FilePublisherRule>
+<% } -%>
+<%# need to complete File hash -%>
 <% } -%>
 </RuleCollection>
 <% } -%>
 <% if $msi_applocker_rules.length >= 1 { -%>
 <RuleCollection Type="Msi" EnforcementMode="<%= $msi_rules %>">
 <% $msi_applocker_rules.each | $key, $value | { -%>
+<%# File path rule -%>
 <%   if $value['rule_type'] == 'path' { -%>
 <FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
 <Conditions>
@@ -111,12 +131,31 @@
 <%     } -%>
 </FilePathRule>
    <% } -%>
+<%# File publisher rule -%>
+<%   if $value['rule_type'] == 'path' { -%>
+<FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
+<Conditions>
+<%     $value['conditions'].each | $condition, $path | { -%>
+        <FilePathCondition Path="<%= $path %>" />
+<%       } -%>
+</Conditions>
+<%     if $value['exceptions'] { -%>
+<Exceptions>
+<%       $value['exceptions'].each | $index, $exception | { -%>
+        <FilePathCondition Path="<%= $exception %>" />
+<%       } -%>
+</Exceptions>
+<%     } -%>
+</FilePathRule>
+   <% } -%>
+<%# need to complete File hash -%>
 <% } -%>
 </RuleCollection>
 <% } -%>
 <% if $script_applocker_rules.length >= 1 { -%>
 <RuleCollection Type="Script" EnforcementMode="<%= $script_rules %>">
 <% $script_applocker_rules.each | $key, $value | { -%>
+<%# File path rule -%>
 <%   if $value['rule_type'] == 'path' { -%>
 <FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
 <Conditions>
@@ -133,6 +172,24 @@
 <%     } -%>
 </FilePathRule>
    <% } -%>
+<%# File publisher rule -%>
+<%   if $value['rule_type'] == 'path' { -%>
+<FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
+<Conditions>
+<%     $value['conditions'].each | $condition, $path | { -%>
+        <FilePathCondition Path="<%= $path %>" />
+<%       } -%>
+</Conditions>
+<%     if $value['exceptions'] { -%>
+<Exceptions>
+<%       $value['exceptions'].each | $index, $exception | { -%>
+        <FilePathCondition Path="<%= $exception %>" />
+<%       } -%>
+</Exceptions>
+<%     } -%>
+</FilePathRule>
+   <% } -%>
+<%# need to complete File hash -%>
 <% } -%>
 </RuleCollection>
 <% } -%>
