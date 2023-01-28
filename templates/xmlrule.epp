@@ -155,6 +155,7 @@
 <% if $script_applocker_rules.length >= 1 { -%>
 <RuleCollection Type="Script" EnforcementMode="<%= $script_rules %>">
 <% $script_applocker_rules.each | $key, $value | { -%>
+<% notify{"script key is ${key} value is ${value}":} -%>
 <%# File path rule -%>
 <%   if $value['rule_type'] == 'path' { -%>
 <FilePathRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
