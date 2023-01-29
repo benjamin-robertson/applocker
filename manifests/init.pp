@@ -61,8 +61,8 @@ class applocker (
       'script_rules'           => $script_rules,
       'packaged_app_rules'     => $packaged_app_rules,}),
   }
-  # Check if match
-  if applocker::xml_tohash($facts['applocker_rules']) == applocker::xml_tohash(epp('applocker/xmlrule.epp', {
+  $existing_rules = sort_hash($hash_policy)
+  $proposed_rules = sort_hash(epp('applocker/xmlrule.epp', {
       'exec_applocker_rules'   => $exec_applocker_rules_with_id,
       'msi_applocker_rules'    => $msi_applocker_rules_with_id,
       'appx_applocker_rules'   => $appx_applocker_rules_with_id,
@@ -72,7 +72,9 @@ class applocker (
       'msi_rules'              => $msi_rules,
       'dll_rules'              => $dll_rules,
       'script_rules'           => $script_rules,
-      'packaged_app_rules'     => $packaged_app_rules,})) {
+      'packaged_app_rules'     => $packaged_app_rules,}))
+  # Check if match
+  if $existing_rules == $proposed_rules {
         notify { 'I am the same pls':}
   }
   file { 'c:\temp\policies':
@@ -80,33 +82,11 @@ class applocker (
   }
   file { 'c:\temp\policies\facts.txt':
     ensure  => file,
-    content => "${applocker::xml_tohash($facts['applocker_rules'])}}",
+    content => "${existing_rules}",
   }
   file { 'c:\temp\policies\template.txt':
     ensure  => file,
-    content => "${applocker::xml_tohash(epp('applocker/xmlrule.epp', {
-      'exec_applocker_rules'   => $exec_applocker_rules_with_id,
-      'msi_applocker_rules'    => $msi_applocker_rules_with_id,
-      'appx_applocker_rules'   => $appx_applocker_rules_with_id,
-      'script_applocker_rules' => $script_applocker_rules_with_id,
-      'dll_applocker_rules'    => $dll_applocker_rules_with_id,
-      'executable_rules'       => $executable_rules,
-      'msi_rules'              => $msi_rules,
-      'dll_rules'              => $dll_rules,
-      'script_rules'           => $script_rules,
-      'packaged_app_rules'     => $packaged_app_rules,}))}"
+    content => "${proposed_rules}"
   }
-  notify {"${applocker::xml_tohash($facts['applocker_rules'])}}":}
-  notify {"${applocker::xml_tohash(epp('applocker/xmlrule.epp', {
-      'exec_applocker_rules'   => $exec_applocker_rules_with_id,
-      'msi_applocker_rules'    => $msi_applocker_rules_with_id,
-      'appx_applocker_rules'   => $appx_applocker_rules_with_id,
-      'script_applocker_rules' => $script_applocker_rules_with_id,
-      'dll_applocker_rules'    => $dll_applocker_rules_with_id,
-      'executable_rules'       => $executable_rules,
-      'msi_rules'              => $msi_rules,
-      'dll_rules'              => $dll_rules,
-      'script_rules'           => $script_rules,
-      'packaged_app_rules'     => $packaged_app_rules,}))}":}
 }
 # lint:endignore
