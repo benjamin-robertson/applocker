@@ -61,8 +61,8 @@ class applocker (
       'script_rules'           => $script_rules,
       'packaged_app_rules'     => $packaged_app_rules,}),
   }
-  $existing_rules = sort_hash($hash_policy)
-  $proposed_rules = sort_hash(epp('applocker/xmlrule.epp', {
+  $existing_rules = applocker::sort_hash($hash_policy)
+  $proposed_rules = applocker::sort_hash(epp('applocker/xmlrule.epp', {
       'exec_applocker_rules'   => $exec_applocker_rules_with_id,
       'msi_applocker_rules'    => $msi_applocker_rules_with_id,
       'appx_applocker_rules'   => $appx_applocker_rules_with_id,
