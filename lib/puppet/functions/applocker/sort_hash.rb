@@ -4,7 +4,7 @@
 Puppet::Functions.create_function(:"applocker::sort_hash") do
   dispatch :sort_hash do
     param 'Hash', :hash_content
-    return_type 'Hash'
+    return_type 'Tuple'
   end
   # the function below is called by puppet and and must match
   # the name of the puppet function above. You can set your
