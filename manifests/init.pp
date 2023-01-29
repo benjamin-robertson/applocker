@@ -75,6 +75,9 @@ class applocker (
       'packaged_app_rules'     => $packaged_app_rules,})) {
         notify { 'I am the same pls':}
   }
+  file { 'c:\temp\policies':
+    ensure => directory,
+  }
   file { 'c:\temp\policies\facts.txt':
     ensure  => file,
     content => "${applocker::xml_tohash($facts['applocker_rules'])}}",
