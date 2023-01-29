@@ -79,7 +79,7 @@ class applocker (
     ensure  => file,
     content => "${applocker::xml_tohash($facts['applocker_rules'])}}",
   }
-  file { 'c:\temp\policies\template.txt': 
+  file { 'c:\temp\policies\template.txt':
     ensure  => file,
     content => "${applocker::xml_tohash(epp('applocker/xmlrule.epp', {
       'exec_applocker_rules'   => $exec_applocker_rules_with_id,
