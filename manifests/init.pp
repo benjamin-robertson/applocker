@@ -71,7 +71,7 @@ class applocker (
       'msi_rules'              => $msi_rules,
       'dll_rules'              => $dll_rules,
       'script_rules'           => $script_rules,
-      'packaged_app_rules'     => $packaged_app_rules, })))
+      'packaged_app_rules'     => $packaged_app_rules, }))
   # Check if match
   if applocker::compare_rules($hash_policy, $proposed_rules) {
     notify { 'Rules match': }
