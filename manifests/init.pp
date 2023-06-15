@@ -75,11 +75,14 @@ class applocker (
   # Check if match
   notify { "Rules are ${hash_policy}": }
   notify { "proposed rules are ${proposed_rules}": }
-  if applocker::compare_rules($hash_policy, $proposed_rules) {
-    notify { 'Rules match': }
-  } else {
-    notify { 'Rules don\'t match': }
-  }
+
+  $da_rules = applocker::compare_rules($hash_policy, $proposed_rules)
+  notify { "da rules are ${da_rules}": }
+  # if applocker::compare_rules($hash_policy, $proposed_rules) {
+  #   notify { 'Rules match': }
+  # } else {
+  #   notify { 'Rules don\'t match': }
+  # }
   file { 'c:\temp\policies':
     ensure => directory,
   }
