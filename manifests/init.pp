@@ -61,8 +61,7 @@ class applocker (
       'script_rules'           => $script_rules,
       'packaged_app_rules'     => $packaged_app_rules,}),
   }
-  $existing_rules = applocker::sort_hash($hash_policy)
-  $proposed_rules = applocker::sort_hash(applocker::xml_tohash(epp('applocker/xmlrule.epp', {
+  $proposed_rules = applocker::xml_tohash(epp('applocker/xmlrule.epp', {
       'exec_applocker_rules'   => $exec_applocker_rules_with_id,
       'msi_applocker_rules'    => $msi_applocker_rules_with_id,
       'appx_applocker_rules'   => $appx_applocker_rules_with_id,
@@ -74,20 +73,17 @@ class applocker (
       'script_rules'           => $script_rules,
       'packaged_app_rules'     => $packaged_app_rules, })))
   # Check if match
-  if applocker::compare_rules($existing_rules, $proposed_rules) {
+  if applocker::compare_rules($hash_policy, $proposed_rules) {
     notify { 'Rules match': }
   } else {
     notify { 'Rules don\'t match': }
-  }
-  if $existing_rules == $proposed_rules {
-    notify { 'I am the same pls': }
   }
   file { 'c:\temp\policies':
     ensure => directory,
   }
   file { 'c:\temp\policies\facts.txt':
     ensure  => file,
-    content => "${existing_rules}",
+    content => "${hash_policy}",
   }
   file { 'c:\temp\policies\template.txt':
     ensure  => file,
