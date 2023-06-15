@@ -88,11 +88,11 @@ class applocker (
   }
   file { 'c:\temp\policies\facts.txt':
     ensure  => file,
-    content => "${hash_policy}",
+    content => "${hash_policy['RuleCollection']}",
   }
   file { 'c:\temp\policies\template.txt':
     ensure  => file,
-    content => "${proposed_rules}"
+    content => "${proposed_rules['RuleCollection']}"
   }
 }
 # lint:endignore
