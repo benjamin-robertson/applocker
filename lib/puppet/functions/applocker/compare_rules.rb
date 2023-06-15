@@ -5,7 +5,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   dispatch :compare_rules do
     param 'Hash', :rules
     param 'Hash', :desired_rules
-    return_type 'Boolean'
+    return_type 'Hash'
   end
   # the function below is called by puppet and and must match
   # the name of the puppet function above. You can set your
@@ -19,11 +19,9 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     # Get Appx rules
     appx_a = get_rule_section('Appx', rule_collection)
     appx_b = get_rule_section('Appx', desired_collection)
-    if appx_a == appx_b
-      true
-    else
-      false
-    end
+
+    # Compare Appx rules
+    
   end
 
   def get_rule_section(type, rules)
@@ -32,6 +30,9 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
         return element
       end
     end
+  end
+
+  def compare_rules(rule_a, rule_b)
   end
 
   # you can define other helper methods in this code block as well
