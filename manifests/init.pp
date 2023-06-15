@@ -73,8 +73,13 @@ class applocker (
       'script_rules'           => $script_rules,
       'packaged_app_rules'     => $packaged_app_rules, }))
   # Check if match
-  notify { "Rules are ${hash_policy}": }
-  notify { "proposed rules are ${proposed_rules}": }
+  if $rule_results == applocker::extract_rules($proposed_rules) {
+    notify { 'Rules match': }
+  } else {
+    notify { 'Rules don\'t match': }
+  }
+  notify { "Rules are ${rule_results}": }
+  notify { "proposed rules are ${applocker::extract_rules($proposed_rules)}": }
 
   $da_rules = applocker::compare_rules($hash_policy, $proposed_rules)
   notify { "da rules are ${da_rules}": }
