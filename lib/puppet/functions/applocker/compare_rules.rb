@@ -15,8 +15,8 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   def compare_rules(rules, desired_rules)
     # rule_collection = rules['RuleCollection']
     desired_collection = desired_rules['RuleCollection']
-    desired_collection
-    desired_collection.class
+    type_of = desired_collection.class
+    doge = "#{type_of}"
   end
 
   # you can define other helper methods in this code block as well
