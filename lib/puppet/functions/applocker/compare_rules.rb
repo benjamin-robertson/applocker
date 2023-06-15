@@ -5,7 +5,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   dispatch :compare_rules do
     param 'Hash', :rules
     param 'Hash', :desired_rules
-    return_type 'Hash'
+    return_type 'Array'
   end
   # the function below is called by puppet and and must match
   # the name of the puppet function above. You can set your
