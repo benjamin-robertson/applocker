@@ -13,8 +13,6 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   # so change x to suit your needs although only one parameter is required
   # as defined in the dispatch method.
   def compare_rules(rules, desired_rules)
-    rules.sort!
-    desired_rules.sort!
     puts "Rules are #{rules}"
     puts "desired rules are #{desired_rules}"
     false
