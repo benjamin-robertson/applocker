@@ -72,10 +72,15 @@ class applocker (
       'msi_rules'              => $msi_rules,
       'dll_rules'              => $dll_rules,
       'script_rules'           => $script_rules,
-      'packaged_app_rules'     => $packaged_app_rules,})))
+      'packaged_app_rules'     => $packaged_app_rules, })))
   # Check if match
+  if applocker::compare_rules($existing_rules, $proposed_rules) {
+    notify { 'Rules match': }
+  } else {
+    notify { 'Rules don\'t match': }
+  }
   if $existing_rules == $proposed_rules {
-        notify { 'I am the same pls':}
+    notify { 'I am the same pls': }
   }
   file { 'c:\temp\policies':
     ensure => directory,
