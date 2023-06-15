@@ -47,7 +47,7 @@ class applocker (
 
   # create xml file
   file { 'policy file':
-    ensure  => present,
+    ensure  => file,
     path    => 'c:\temp\applocker_puppet.xml',
     content => epp('applocker/xmlrule.epp', {
       'exec_applocker_rules'   => $exec_applocker_rules_with_id,
@@ -59,7 +59,7 @@ class applocker (
       'msi_rules'              => $msi_rules,
       'dll_rules'              => $dll_rules,
       'script_rules'           => $script_rules,
-      'packaged_app_rules'     => $packaged_app_rules,}),
+      'packaged_app_rules'     => $packaged_app_rules, }),
   }
   $proposed_rules = applocker::xml_tohash(epp('applocker/xmlrule.epp', {
       'exec_applocker_rules'   => $exec_applocker_rules_with_id,
@@ -75,15 +75,9 @@ class applocker (
 
   notify { "Rules are ${rule_results}": }
   notify { "proposed rules are ${applocker::extract_rules($proposed_rules)}": }
-  # Check if match
-  if $rule_results == applocker::extract_rules($proposed_rules) {
-    notify { 'Rules match': }
-  } else {
-    notify { 'Rules don\'t match': }
-  }
 
-  # $da_rules = applocker::compare_rules($hash_policy, $proposed_rules)
-  # notify { "da rules are ${da_rules}": }
+  $da_rules = applocker::compare_rules($hash_policy, $proposed_rules)
+  notify { "da rules are ${da_rules}": }
   # if applocker::compare_rules($hash_policy, $proposed_rules) {
   #   notify { 'Rules match': }
   # } else {
