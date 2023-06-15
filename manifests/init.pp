@@ -76,13 +76,13 @@ class applocker (
   # notify { "Rules are ${rule_results}": }
   # notify { "proposed rules are ${applocker::extract_rules($proposed_rules)}": }
 
-  $da_rules = applocker::compare_rules($hash_policy, $proposed_rules)
-  notify { "da rules are ${da_rules}": }
-  # if applocker::compare_rules($hash_policy, $proposed_rules) {
-  #   notify { 'Rules match': }
-  # } else {
-  #   notify { 'Rules don\'t match': }
-  # }
+  # $da_rules = applocker::compare_rules($hash_policy, $proposed_rules)
+  # notify { "da rules are ${da_rules}": }
+  if applocker::compare_rules($hash_policy, $proposed_rules) {
+    notify { 'Rules match': }
+  } else {
+    notify { 'Rules don\'t match': }
+  }
   file { 'c:\temp\policies':
     ensure => directory,
   }
@@ -92,7 +92,7 @@ class applocker (
   }
   file { 'c:\temp\policies\template.txt':
     ensure  => file,
-    content => "${proposed_rules['RuleCollection']}"
+    content => "${proposed_rules['RuleCollection']}",
   }
 }
 # lint:endignore
