@@ -24,16 +24,16 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     rule_collection
   end
 
-  def get_rule_section(type, rules)
-    rules.each do | element |
-      if element['Type'] == type
-        return element
-      end
-    end
-  end
+  # def get_rule_section(type, rules)
+  #   rules.each do | element |
+  #     if element['Type'] == type
+  #       return element
+  #     end
+  #   end
+  # end
 
-  def compare_rules(rule_a, rule_b)
-  end
+  # def compare_rules(rule_a, rule_b)
+  # end
 
   # you can define other helper methods in this code block as well
 end
