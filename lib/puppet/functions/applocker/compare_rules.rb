@@ -19,70 +19,67 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     # Check appx rules
     appx_a = get_rule_section('Appx', rule_collection)
     appx_b = get_rule_section('Appx', desired_collection)
-    # appx_result = compare_rules(appx_a, appx_b)
+    appx_result = rule_comparison(appx_a, appx_b)
 
-    # if appx_result == false 
-    #   return { 'Result' => 'false',
-    #            'failing_rule' => 'Appx' }
-    # end
+    if appx_result == false 
+      return { 'Result' => false,
+               'failing_rule' => 'Appx' }
+    end
 
-    # # Check Dll rules
-    # dll_a = get_rule_section('Dll', rule_collection)
-    # dll_b = get_rule_section('Dll', desired_collection)
-    # dll_result = compare_rules(dll_a, dll_b)
+    # Check Dll rules
+    dll_a = get_rule_section('Dll', rule_collection)
+    dll_b = get_rule_section('Dll', desired_collection)
+    dll_result = rule_comparison(dll_a, dll_b)
 
-    # if dll_result == false 
-    #   return { 'Result' => 'false',
-    #            'failing_rule' => 'Dll' }
-    # end
+    if dll_result == false 
+      return { 'Result' => false,
+               'failing_rule' => 'Dll' }
+    end
 
-    # # Check Exe rules
-    # exe_a = get_rule_section('Exe', rule_collection)
-    # exe_b = get_rule_section('Exe', desired_collection)
-    # exe_result = compare_rules(exe_a, exe_b)
+    # Check Exe rules
+    exe_a = get_rule_section('Exe', rule_collection)
+    exe_b = get_rule_section('Exe', desired_collection)
+    exe_result = rule_comparison(exe_a, exe_b)
 
-    # if exe_result == false 
-    #   return { 'Result' => 'false',
-    #            'failing_rule' => 'Exe' }
-    # end
+    if exe_result == false 
+      return { 'Result' => false,
+               'failing_rule' => 'Exe' }
+    end
 
-    # # Check Msi rules
-    # msi_a = get_rule_section('Msi', rule_collection)
-    # msi_b = get_rule_section('Msi', desired_collection)
-    # msi_result = compare_rules(msi_a, msi_b)
+    # Check Msi rules
+    msi_a = get_rule_section('Msi', rule_collection)
+    msi_b = get_rule_section('Msi', desired_collection)
+    msi_result = rule_comparison(msi_a, msi_b)
 
-    # if msi_result == false 
-    #   return { 'Result' => 'false',
-    #            'failing_rule' => 'Msi' }
-    # end
+    if msi_result == false 
+      return { 'Result' => false,
+               'failing_rule' => 'Msi' }
+    end
 
-    # # Check Script rules
-    # script_a = get_rule_section('Script', rule_collection)
-    # script_b = get_rule_section('Script', desired_collection)
-    # script_result = compare_rules(script_a, script_b)
+    # Check Script rules
+    script_a = get_rule_section('Script', rule_collection)
+    script_b = get_rule_section('Script', desired_collection)
+    script_result = rule_comparison(script_a, script_b)
 
-    # if script_result == false 
-    #   return { 'Result' => 'false',
-    #            'failing_rule' => 'Script' }
-    # end
+    if script_result == false 
+      return { 'Result' => false,
+               'failing_rule' => 'Script' }
+    end
 
     return { 'Result' => true }
 
   end
 
   def get_rule_section(type, rules)
-    return_val = {}
     rules.each do | element |
       if element['Type'] == type
-        return_val = element
+        return element
       end
     end
-    return_val
   end
   
-  def compare_rules(rule1, rule2)
+  def rule_comparison(rule1, rule2)
     matched = false
-    result = true
   
     # check enforcement mode
     if rule1['EnforcementMode'] != rule2['EnforcementMode']
@@ -100,12 +97,12 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
           end
           # confirm each rule matched
           if matched == false
-            result = false
+            return false
           end
           matched = false
         end
       rescue => exception
-        result = false
+        return false
       end
     end
   
@@ -120,17 +117,17 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
           end
           # confirm each rule matched
           if matched == false
-            result = false
+            return false
           end
           matched = false
         end
       rescue => exception
-        result = false
+        return false
       end
     end
     
     # Check if there was a match
-    result
+    return true
   end
 
   # you can define other helper methods in this code block as well
