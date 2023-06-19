@@ -13,7 +13,6 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   # so change x to suit your needs although only one parameter is required
   # as defined in the dispatch method.
   def compare_rules(rules, desired_rules)
-    return { 'Result' => 'true' }
     # rule_collection = rules['RuleCollection']
     # desired_collection = desired_rules['RuleCollection']
 
@@ -67,7 +66,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     #            'failing_rule' => 'Script' }
     # end
 
-    return { 'Result' => 'true' }
+    return { 'Result' => true }
 
   end
 
