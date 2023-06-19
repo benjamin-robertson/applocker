@@ -29,7 +29,7 @@ applocker::exec_applocker_rules:
     action: "Allow"
     conditions:
       path: "%OSDRIVE%\\CHOCO\\*"
-    description: "Allow all users to run apps in osdrive choco"
+    description: "Allow all users to run apps in osdrive choco1"
     rule_type: "path"
     type: "Exe"
     user_or_group_sid: "S-1-1-0"
