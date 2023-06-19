@@ -73,8 +73,8 @@ class applocker (
       'script_rules'           => $script_rules,
       'packaged_app_rules'     => $packaged_app_rules, }))
 
-  notify { "Rules are ${rule_results}": }
-  notify { "proposed rules are ${$proposed_rules}": }
+  # notify { "Rules are ${rule_results}": }
+  # notify { "proposed rules are ${$proposed_rules}": }
 
   $da_rules = applocker::compare_rules($hash_policy, $proposed_rules)
   notify { "da rules are ${da_rules}": }

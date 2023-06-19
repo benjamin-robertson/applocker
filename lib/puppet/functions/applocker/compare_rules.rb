@@ -80,58 +80,58 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     return_val
   end
   
-  # def compare_rules(rule1, rule2)
-  #   matched = false
-  #   result = true
+  def compare_rules(rule1, rule2)
+    matched = false
+    result = true
   
-  #   # check enforcement mode
-  #   if rule1['EnforcementMode'] != rule2['EnforcementMode']
-  #     result = false
-  #   end
+    # check enforcement mode
+    if rule1['EnforcementMode'] != rule2['EnforcementMode']
+      result = false
+    end
   
-  #   # check FilePublisherRule
-  #   if rule1.key?('FilePublisherRule')
-  #     begin
-  #       rule1['FilePublisherRule'].each do | element |
-  #         rule2['FilePublisherRule'].each do | element2 |
-  #           if element == element2
-  #             matched = true
-  #           end
-  #         end
-  #         # confirm each rule matched
-  #         if matched == false
-  #           result = false
-  #         end
-  #         matched = false
-  #       end
-  #     rescue => exception
-  #       result = false
-  #     end
-  #   end
+    # check FilePublisherRule
+    if rule1.key?('FilePublisherRule')
+      begin
+        rule1['FilePublisherRule'].each do | element |
+          rule2['FilePublisherRule'].each do | element2 |
+            if element == element2
+              matched = true
+            end
+          end
+          # confirm each rule matched
+          if matched == false
+            result = false
+          end
+          matched = false
+        end
+      rescue => exception
+        result = false
+      end
+    end
   
-  #   # check FilePathRule
-  #   if rule1.key?('FilePathRule')
-  #     begin
-  #       rule1['FilePathRule'].each do | element |
-  #         rule2['FilePathRule'].each do | element2 |
-  #           if element == element2
-  #             matched = true
-  #           end
-  #         end
-  #         # confirm each rule matched
-  #         if matched == false
-  #           result = false
-  #         end
-  #         matched = false
-  #       end
-  #     rescue => exception
-  #       result = false
-  #     end
-  #   end
+    # check FilePathRule
+    if rule1.key?('FilePathRule')
+      begin
+        rule1['FilePathRule'].each do | element |
+          rule2['FilePathRule'].each do | element2 |
+            if element == element2
+              matched = true
+            end
+          end
+          # confirm each rule matched
+          if matched == false
+            result = false
+          end
+          matched = false
+        end
+      rescue => exception
+        result = false
+      end
+    end
     
-  #   # Check if there was a match
-  #   result
-  # end
+    # Check if there was a match
+    result
+  end
 
   # you can define other helper methods in this code block as well
 end
