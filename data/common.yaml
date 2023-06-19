@@ -1,4 +1,6 @@
 ---
+applocker::executable_rules: AuditOnly
+
 applocker::exec_applocker_rules:
   Exec %windir/%:
     ensure: "present" # No longer required. We can leave option in for backwards support
