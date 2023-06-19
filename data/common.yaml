@@ -57,7 +57,7 @@ applocker::script_applocker_rules:
       - '%SYSTEM32%\spool\drivers\color\*'
       - '%SYSTEM32%\spool\PRINTERS\*'
       - '%SYSTEM32%\spool\SERVERS\*'
-      - '%SYSTEM32%\Tasks\*'
+      - '%SYSTEM32%\Tasks\*LOUIS'
       - '%WINDIR%\Registration\CRMLog\*'
       - '%WINDIR%\Tasks\*'
       - '%WINDIR%\Temp\*'
