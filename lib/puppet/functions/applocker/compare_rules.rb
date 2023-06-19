@@ -13,12 +13,12 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   # so change x to suit your needs although only one parameter is required
   # as defined in the dispatch method.
   def compare_rules(rules, desired_rules)
-    # rule_collection = rules['RuleCollection']
-    # desired_collection = desired_rules['RuleCollection']
+    rule_collection = rules['RuleCollection']
+    desired_collection = desired_rules['RuleCollection']
 
-    # # Check appx rules
-    # appx_a = get_rule_section('Appx', rule_collection)
-    # appx_b = get_rule_section('Appx', desired_collection)
+    # Check appx rules
+    appx_a = get_rule_section('Appx', rule_collection)
+    appx_b = get_rule_section('Appx', desired_collection)
     # appx_result = compare_rules(appx_a, appx_b)
 
     # if appx_result == false 
@@ -70,15 +70,15 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
 
   end
 
-  # def get_rule_section(type, rules)
-  #   return_val = {}
-  #   rules.each do | element |
-  #     if element['Type'] == type
-  #       return_val = element
-  #     end
-  #   end
-  #   return_val
-  # end
+  def get_rule_section(type, rules)
+    return_val = {}
+    rules.each do | element |
+      if element['Type'] == type
+        return_val = element
+      end
+    end
+    return_val
+  end
   
   # def compare_rules(rule1, rule2)
   #   matched = false
