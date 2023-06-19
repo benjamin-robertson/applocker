@@ -16,7 +16,6 @@ class applocker (
   Enum['Enabled','AuditOnly'] $dll_rules              = 'Enabled',
   Enum['Enabled','AuditOnly'] $script_rules           = 'Enabled',
   Enum['Enabled','AuditOnly'] $packaged_app_rules     = 'Enabled',
-  Boolean                     $purge_existing_rules   = true,
   Boolean                     $start_service          = true,
 ) {
   $hash_policy = applocker::xml_tohash($facts['applocker_rules'])
@@ -66,6 +65,10 @@ class applocker (
       path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
       command => 'powershell Set-AppLockerPolicy -XMLPolicy c:\windows\applocker_puppet_policy.xml',
     }
+  }
+
+  if $start_service {
+    include applocker::service
   }
 
   file { 'c:\temp\policies':
