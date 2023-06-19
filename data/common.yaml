@@ -1,5 +1,5 @@
 ---
-applocker::executable_rules: AuditOnly
+# applocker::executable_rules: AuditOnly
 
 applocker::exec_applocker_rules:
   Exec %windir/%:
