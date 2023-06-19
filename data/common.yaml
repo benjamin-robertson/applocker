@@ -11,7 +11,7 @@ applocker::exec_applocker_rules:
       - '%SYSTEM32%\Tasks\*'
       - '%WINDIR%\Tasks\*'
       - '%WINDIR%\Temp\*'
-    description: "Allow all users to run apps in windir"
+    description: "1Allow all users to run apps in windir"
     rule_type: "path"
     type: "Exe" # Not required, we know its a exe rule. We can leave option in for backwards support
     user_or_group_sid: "S-1-1-0"
