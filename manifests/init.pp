@@ -19,19 +19,10 @@ class applocker (
   Boolean                     $purge_existing_rules   = true,
   Boolean                     $start_service          = true,
 ) {
-  #notify{"exec_applocker_rules lenght is ${exec_applocker_rules.length}":}
-  #notify{"Applocker rules are ${applocker::xml_tohash($facts['applocker_rules'])}":}
   $hash_policy = applocker::xml_tohash($facts['applocker_rules'])
-  #notify{"applocker hash type ${type($hash_policy)}":}
-  # file { 'policy from fact':
-  #   ensure  => present,
-  #   path    => 'c:\temp\applocker_from_fact.xml',
-  #   content => applocker::hash_toxml($hash_policy),
-  # }
 
   # Break down structure using function, We want to retrieve all the names of each rules type and return
   $rule_results = applocker::extract_rules($hash_policy)
-  #notify{"rule results ${rule_results}":}
 
   # Generate id for each rule, or get from existing rule. 
   $exec_applocker_rules_with_id = applocker::get_id($exec_applocker_rules, $rule_results['name_to_id'])
@@ -39,16 +30,11 @@ class applocker (
   $appx_applocker_rules_with_id = applocker::get_id($appx_applocker_rules, $rule_results['name_to_id'])
   $script_applocker_rules_with_id = applocker::get_id($script_applocker_rules, $rule_results['name_to_id'])
   $dll_applocker_rules_with_id = applocker::get_id($dll_applocker_rules, $rule_results['name_to_id'])
-  # notify{"exec with id ${$exec_applocker_rules_with_id}":}
-  # notify{"msi with id ${$msi_applocker_rules_with_id}":}
-  # notify{"appx with id ${$appx_applocker_rules_with_id}":}
-  # notify{"script with id ${$script_applocker_rules_with_id}":}
-  # notify{"dll with id ${$dll_applocker_rules_with_id}":}
 
   # create xml file
   file { 'policy file':
     ensure  => file,
-    path    => 'c:\temp\applocker_puppet.xml',
+    path    => 'c:\windows\applocker_puppet_policy.xml',
     content => epp('applocker/xmlrule.epp', {
       'exec_applocker_rules'   => $exec_applocker_rules_with_id,
       'msi_applocker_rules'    => $msi_applocker_rules_with_id,
@@ -78,9 +64,10 @@ class applocker (
     notify { "Rules don\'t match. Results ${rule_check_results}": }
     exec { 'Update applocker rules':
       path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
-      command => 'powershell Set-AppLockerPolicy -XMLPolicy c:\temp\applocker_puppet.xml',
+      command => 'powershell Set-AppLockerPolicy -XMLPolicy c:\windows\applocker_puppet_policy.xml',
     }
   }
+
   file { 'c:\temp\policies':
     ensure => directory,
   }
