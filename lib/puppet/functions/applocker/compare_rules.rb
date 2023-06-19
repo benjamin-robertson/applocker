@@ -18,7 +18,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     desired_collection = desired_rules['RuleCollection']
 
     # Check appx rules
-    appx_a = get_rule_section('Appx', rule_collection)a
+    appx_a = get_rule_section('Appx', rule_collection)
     appx_b = get_rule_section('Appx', desired_collection)
     appx_result = compare_rules(appx_a, appx_b)
 
