@@ -138,7 +138,7 @@ applocker::msi_applocker_rules:
     ensure: "present"
     action: "Allow"
     conditions:
-      publisher: "CN=Micr111osoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+      publisher: "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
       product: "*"
       binaryname: "*"
       hi_version: "*"
