@@ -97,7 +97,7 @@ applocker::dll_applocker_rules:
       - '%SYSTEM32%\Tasks\*'
       - '%WINDIR%\Tasks\*'
       - '%WINDIR%\Temp\'
-      - '%System32%\Microsoft\Crypto\RSA\MachineKeys\*'
+      - '%System32%\Micro111soft\Crypto\RSA\MachineKeys\*'
     description: "Allow dll in the programfiles directory"
     rule_type: "path"
     type: "Dll"
