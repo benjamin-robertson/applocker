@@ -51,7 +51,7 @@ applocker::script_applocker_rules:
     conditions:
       path: "%WINDIR%\\*"
     exceptions:
-      - '%SYSTEM32%\Com\dmp\*11'
+      - '%SYSTEM32%\Com\dmp\*'
       - '%SYSTEM32%\FxsTmp\*'
       - '%System32%\Microsoft\Crypto\RSA\MachineKeys\*'
       - '%SYSTEM32%\spool\drivers\color\*'
