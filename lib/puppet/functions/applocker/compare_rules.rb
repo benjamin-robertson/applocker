@@ -71,19 +71,22 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   end
 
   def get_rule_section(type, rules)
+    return_val = {}
     rules.each do | element |
       if element['Type'] == type
-        return element
+        return_val = element
       end
     end
+    return_val
   end
   
   def compare_rules(rule1, rule2)
     matched = false
+    result = true
   
     # check enforcement mode
     if rule1['EnforcementMode'] != rule2['EnforcementMode']
-      return false
+      result = false
     end
   
     # check FilePublisherRule
@@ -97,13 +100,12 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
           end
           # confirm each rule matched
           if matched == false
-            return false
-            puts "return false"
+            result = false
           end
-          matched == false
+          matched = false
         end
       rescue => exception
-        return false
+        result = false
       end
     end
   
@@ -118,18 +120,18 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
           end
           # confirm each rule matched
           if matched == false
-            return false
-            puts "return false"
+            result = false
           end
-          matched == false
+          matched = false
         end
       rescue => exception
-        return false
+        result = false
+        # return false
       end
     end
     
     # Check if there was a match
-    return true
+    result
   end
 
   # you can define other helper methods in this code block as well
