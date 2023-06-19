@@ -126,7 +126,6 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
         end
       rescue => exception
         result = false
-        # return false
       end
     end
     
