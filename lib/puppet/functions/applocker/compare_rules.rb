@@ -14,58 +14,58 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   # as defined in the dispatch method.
   def compare_rules(rules, desired_rules)
     return { 'Result' => 'true' }
-    rule_collection = rules['RuleCollection']
-    desired_collection = desired_rules['RuleCollection']
+    # rule_collection = rules['RuleCollection']
+    # desired_collection = desired_rules['RuleCollection']
 
-    # Check appx rules
-    appx_a = get_rule_section('Appx', rule_collection)
-    appx_b = get_rule_section('Appx', desired_collection)
-    appx_result = compare_rules(appx_a, appx_b)
+    # # Check appx rules
+    # appx_a = get_rule_section('Appx', rule_collection)
+    # appx_b = get_rule_section('Appx', desired_collection)
+    # appx_result = compare_rules(appx_a, appx_b)
 
-    if appx_result == false 
-      return { 'Result' => 'false',
-               'failing_rule' => 'Appx' }
-    end
+    # if appx_result == false 
+    #   return { 'Result' => 'false',
+    #            'failing_rule' => 'Appx' }
+    # end
 
-    # Check Dll rules
-    dll_a = get_rule_section('Dll', rule_collection)
-    dll_b = get_rule_section('Dll', desired_collection)
-    dll_result = compare_rules(dll_a, dll_b)
+    # # Check Dll rules
+    # dll_a = get_rule_section('Dll', rule_collection)
+    # dll_b = get_rule_section('Dll', desired_collection)
+    # dll_result = compare_rules(dll_a, dll_b)
 
-    if dll_result == false 
-      return { 'Result' => 'false',
-               'failing_rule' => 'Dll' }
-    end
+    # if dll_result == false 
+    #   return { 'Result' => 'false',
+    #            'failing_rule' => 'Dll' }
+    # end
 
-    # Check Exe rules
-    exe_a = get_rule_section('Exe', rule_collection)
-    exe_b = get_rule_section('Exe', desired_collection)
-    exe_result = compare_rules(exe_a, exe_b)
+    # # Check Exe rules
+    # exe_a = get_rule_section('Exe', rule_collection)
+    # exe_b = get_rule_section('Exe', desired_collection)
+    # exe_result = compare_rules(exe_a, exe_b)
 
-    if exe_result == false 
-      return { 'Result' => 'false',
-               'failing_rule' => 'Exe' }
-    end
+    # if exe_result == false 
+    #   return { 'Result' => 'false',
+    #            'failing_rule' => 'Exe' }
+    # end
 
-    # Check Msi rules
-    msi_a = get_rule_section('Msi', rule_collection)
-    msi_b = get_rule_section('Msi', desired_collection)
-    msi_result = compare_rules(msi_a, msi_b)
+    # # Check Msi rules
+    # msi_a = get_rule_section('Msi', rule_collection)
+    # msi_b = get_rule_section('Msi', desired_collection)
+    # msi_result = compare_rules(msi_a, msi_b)
 
-    if msi_result == false 
-      return { 'Result' => 'false',
-               'failing_rule' => 'Msi' }
-    end
+    # if msi_result == false 
+    #   return { 'Result' => 'false',
+    #            'failing_rule' => 'Msi' }
+    # end
 
-    # Check Script rules
-    script_a = get_rule_section('Script', rule_collection)
-    script_b = get_rule_section('Script', desired_collection)
-    script_result = compare_rules(script_a, script_b)
+    # # Check Script rules
+    # script_a = get_rule_section('Script', rule_collection)
+    # script_b = get_rule_section('Script', desired_collection)
+    # script_result = compare_rules(script_a, script_b)
 
-    if script_result == false 
-      return { 'Result' => 'false',
-               'failing_rule' => 'Script' }
-    end
+    # if script_result == false 
+    #   return { 'Result' => 'false',
+    #            'failing_rule' => 'Script' }
+    # end
 
     return { 'Result' => 'true' }
 
