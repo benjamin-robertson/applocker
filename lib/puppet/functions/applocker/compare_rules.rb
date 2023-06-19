@@ -13,7 +13,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   # so change x to suit your needs although only one parameter is required
   # as defined in the dispatch method.
   def compare_rules(rules, desired_rules)
-    return { 'Result' => true }
+    return { 'Result' => 'true' }
     rule_collection = rules['RuleCollection']
     desired_collection = desired_rules['RuleCollection']
 
@@ -23,7 +23,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     appx_result = compare_rules(appx_a, appx_b)
 
     if appx_result == false 
-      return { 'Result' => false,
+      return { 'Result' => 'false',
                'failing_rule' => 'Appx' }
     end
 
@@ -33,7 +33,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     dll_result = compare_rules(dll_a, dll_b)
 
     if dll_result == false 
-      return { 'Result' => false,
+      return { 'Result' => 'false',
                'failing_rule' => 'Dll' }
     end
 
@@ -43,7 +43,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     exe_result = compare_rules(exe_a, exe_b)
 
     if exe_result == false 
-      return { 'Result' => false,
+      return { 'Result' => 'false',
                'failing_rule' => 'Exe' }
     end
 
@@ -53,7 +53,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     msi_result = compare_rules(msi_a, msi_b)
 
     if msi_result == false 
-      return { 'Result' => false,
+      return { 'Result' => 'false',
                'failing_rule' => 'Msi' }
     end
 
@@ -63,11 +63,11 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     script_result = compare_rules(script_a, script_b)
 
     if script_result == false 
-      return { 'Result' => false,
+      return { 'Result' => 'false',
                'failing_rule' => 'Script' }
     end
 
-    return { 'Result' => true }
+    return { 'Result' => 'true' }
 
   end
 
