@@ -76,6 +76,10 @@ class applocker (
   $rule_check_results = applocker::compare_rules($hash_policy, $proposed_rules)
   if $rule_check_results['Result'] == false {
     notify { "Rules don\'t match. Results ${rule_check_results}": }
+    exec { 'Update applocker rules':
+      path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
+      command => 'powershell Set-AppLockerPolicy -XMLPolicy c:\temp\applocker_puppet.xml',
+    }
   }
   file { 'c:\temp\policies':
     ensure => directory,
