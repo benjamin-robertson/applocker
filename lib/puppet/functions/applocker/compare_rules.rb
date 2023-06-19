@@ -5,7 +5,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   dispatch :compare_rules do
     param 'Hash', :rules
     param 'Hash', :desired_rules
-    return_type 'Hash'
+    return_type 'String'
   end
   # the function below is called by puppet and and must match
   # the name of the puppet function above. You can set your
@@ -13,6 +13,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   # so change x to suit your needs although only one parameter is required
   # as defined in the dispatch method.
   def compare_rules(rules, desired_rules)
+    louie = get_louie()
     rule_collection = rules['RuleCollection']
     desired_collection = desired_rules['RuleCollection']
 
@@ -68,6 +69,10 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
 
     return { 'Result' => true }
 
+  end
+
+  def get_louie()
+    return 'louie is a doge'
   end
 
   def get_rule_section(type, rules)
