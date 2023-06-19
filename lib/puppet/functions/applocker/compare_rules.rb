@@ -83,7 +83,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   
     # check enforcement mode
     if rule1['EnforcementMode'] != rule2['EnforcementMode']
-      result = false
+      return false
     end
   
     # check FilePublisherRule
