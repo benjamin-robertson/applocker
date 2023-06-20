@@ -122,7 +122,7 @@ applocker::appx_applocker_rules:
         product: "*"
         binaryname: "*"
         lo_version: "*"
-        hi_version: "3.0.0"
+        hi_version: "3.0.0.0"
     rule_type: "publisher"
     type: "Appx"
     user_or_group_sid: "S-1-1-0"
