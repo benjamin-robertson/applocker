@@ -25,6 +25,8 @@
 <%     if $value['exceptions'] { -%>
 <Exceptions>
 <%# need to complete this -%>
+
+<%# need to complete this -%>
 </Exceptions>
 <%     } -%>
 </FilePublisherRule>
