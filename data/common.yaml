@@ -35,15 +35,15 @@ applocker::exec_applocker_rules:
     rule_type: "path"
     type: "Exe"
     user_or_group_sid: "S-1-1-0"
-  # Exec %OSDRIVE/temp/%:
-  #   ensure: "present"
-  #   action: "Allow"
-  #   conditions:
-  #     path: "%OSDRIVE%\\temp\\*"
-  #   description: "Allow all users to run apps in osdrive temp"
-  #   rule_type: "path"
-  #   type: "Exe"
-  #   user_or_group_sid: "S-1-1-0"
+  Exec %OSDRIVE/temp/%:
+    ensure: "present"
+    action: "Allow"
+    conditions:
+      path: "%OSDRIVE%\\temp\\*"
+    description: "Allow all users to run apps in osdrive temp"
+    rule_type: "path"
+    type: "Exe"
+    user_or_group_sid: "S-1-1-0"
 
 
 applocker::script_applocker_rules:
