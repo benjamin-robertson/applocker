@@ -25,13 +25,19 @@
 <%     if $value['exceptions'] { -%>
 <Exceptions>
 <%# need to complete this -%>
-
+    <% if $value['exceptions'] { -%>
+      <% $value['exceptions'].each | $exception_value | { -%>
+        <FilePublisherCondition PublisherName="<%= $exception_value['publisher']%>" ProductName="<%= $exception_value['product']%>" BinaryName="<%= $exception_value['binaryname']%>">
+        <BinaryVersionRange LowSection="<%= $exception_value['lo_version']%>" HighSection="<%= $exception_value['hi_version']%>" />
+        </FilePublisherCondition>
+      <% } -%>
+    <% } -%>
 <%# need to complete this -%>
 </Exceptions>
 <%     } -%>
 </FilePublisherRule>
 <% } -%>
-<%# need to complete File hash ----- NOT REQUIRED for appx -%>
+<%# File hash ----- NOT REQUIRED for appx -%>
 <% } -%>
 </RuleCollection>
 <% } -%>

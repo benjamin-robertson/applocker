@@ -117,6 +117,12 @@ applocker::appx_applocker_rules:
       hi_version: "*"
       lo_version: "*"
     description: "Allow Package app rule Microsoft corporation"
+    exceptions:
+      - publisher: "CN=Louis, O=Poodle, C=AU"
+        product: "*"
+        binaryname: "*"
+        lo_version: "*"
+        hi_version: "3.0.0"
     rule_type: "publisher"
     type: "Appx"
     user_or_group_sid: "S-1-1-0"
