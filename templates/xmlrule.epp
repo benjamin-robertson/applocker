@@ -24,15 +24,11 @@
 </Conditions>
 <%     if $value['exceptions'] { -%>
 <Exceptions>
-<%# need to complete this -%>
-    <% if $value['exceptions'] { -%>
-      <% $value['exceptions'].each | $exception_value | { -%>
-        <FilePublisherCondition PublisherName="<%= $exception_value['publisher']%>" ProductName="<%= $exception_value['product']%>" BinaryName="<%= $exception_value['binaryname']%>">
-        <BinaryVersionRange LowSection="<%= $exception_value['lo_version']%>" HighSection="<%= $exception_value['hi_version']%>" />
-        </FilePublisherCondition>
+     <% $value['exceptions'].each | $exception_value | { -%>
+       <FilePublisherCondition PublisherName="<%= $exception_value['publisher']%>" ProductName="<%= $exception_value['product']%>" BinaryName="<%= $exception_value['binaryname']%>">
+       <BinaryVersionRange LowSection="<%= $exception_value['lo_version']%>" HighSection="<%= $exception_value['hi_version']%>" />
+       </FilePublisherCondition>
       <% } -%>
-    <% } -%>
-<%# need to complete this -%>
 </Exceptions>
 <%     } -%>
 </FilePublisherRule>
@@ -71,7 +67,11 @@
 </Conditions>
 <%     if $value['exceptions'] { -%>
 <Exceptions>
-<%# need to complete this -%>
+    <% $value['exceptions'].each | $exception_value | { -%>
+      <FilePublisherCondition PublisherName="<%= $exception_value['publisher']%>" ProductName="<%= $exception_value['product']%>" BinaryName="<%= $exception_value['binaryname']%>">
+      <BinaryVersionRange LowSection="<%= $exception_value['lo_version']%>" HighSection="<%= $exception_value['hi_version']%>" />
+      </FilePublisherCondition>
+    <% } -%>
 </Exceptions>
 <%     } -%>
 </FilePublisherRule>
@@ -110,7 +110,11 @@
 </Conditions>
 <%     if $value['exceptions'] { -%>
 <Exceptions>
-<%# need to complete this -%>
+    <% $value['exceptions'].each | $exception_value | { -%>
+      <FilePublisherCondition PublisherName="<%= $exception_value['publisher']%>" ProductName="<%= $exception_value['product']%>" BinaryName="<%= $exception_value['binaryname']%>">
+      <BinaryVersionRange LowSection="<%= $exception_value['lo_version']%>" HighSection="<%= $exception_value['hi_version']%>" />
+      </FilePublisherCondition>
+    <% } -%>
 </Exceptions>
 <%     } -%>
 </FilePublisherRule>
@@ -149,7 +153,11 @@
 </Conditions>
 <%     if $value['exceptions'] { -%>
 <Exceptions>
-<%# need to complete this -%>
+    <% $value['exceptions'].each | $exception_value | { -%>
+      <FilePublisherCondition PublisherName="<%= $exception_value['publisher']%>" ProductName="<%= $exception_value['product']%>" BinaryName="<%= $exception_value['binaryname']%>">
+      <BinaryVersionRange LowSection="<%= $exception_value['lo_version']%>" HighSection="<%= $exception_value['hi_version']%>" />
+      </FilePublisherCondition>
+    <% } -%>
 </Exceptions>
 <%     } -%>
 </FilePublisherRule>
@@ -188,7 +196,11 @@
 </Conditions>
 <%     if $value['exceptions'] { -%>
 <Exceptions>
-<%# need to complete this -%>
+    <% $value['exceptions'].each | $exception_value | { -%>
+      <FilePublisherCondition PublisherName="<%= $exception_value['publisher']%>" ProductName="<%= $exception_value['product']%>" BinaryName="<%= $exception_value['binaryname']%>">
+      <BinaryVersionRange LowSection="<%= $exception_value['lo_version']%>" HighSection="<%= $exception_value['hi_version']%>" />
+      </FilePublisherCondition>
+    <% } -%>
 </Exceptions>
 <%     } -%>
 </FilePublisherRule>
