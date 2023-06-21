@@ -124,7 +124,7 @@
 <FileHashRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
 <% if $value['conditions'] { -%>
 <Conditions>
-<FiileHashCondition>
+<FileHashCondition>
    <% $value['conditions'].each | $condition_value | { -%>
      <FileHash Type="<%= $condition_value['type'] %>" SourceFileLength="<%= $condition_value['length'] %>" SourceFileName="<%= $condition_value['file_name'] %>" Data="<%= $condition_value['hash'] %>" />
    <% } -%>
