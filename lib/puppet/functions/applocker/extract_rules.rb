@@ -46,7 +46,13 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
           name_to_id[value['Name']] = value['Id']
         end
       end
-      # need to code in filehash rule. But need to get this working first.
+      if array['FileHashRule']
+        array['FileHashRule'].each do |value|
+          hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
+          rule_hash[array['Type']].push(hash_tmp)
+          name_to_id[value['Name']] = value['Id']
+        end
+      end
     end
     return_hash = { 'rule_status' => rule_status, 'rule_hash' => rule_hash, 'name_to_id' => name_to_id }
     return_hash
