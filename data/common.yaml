@@ -1,5 +1,5 @@
 ---
-# applocker::executable_rules: Enabled
+applocker::executable_rules: Enabled
 
 applocker::exec_applocker_rules:
   Exec %windir/%:
