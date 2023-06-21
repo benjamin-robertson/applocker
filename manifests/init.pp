@@ -5,14 +5,14 @@
 # lint:ignore:140chars
 # @example
 #   include applocker
-Struct[{ 'action' => Enum['Allow','Deny'],
-        'ensure' => Variant[String, Optional],
-        'conditions' => Variant[Hash, Array],
-        'exceptions' => Variant[Hash, Array, Optional],
-        'description' => Variant[String, Optional],
-        'rule_type' => Enum['path','hash','publisher'],
-        'type'        => Variant[String, Optional],
-        'user_or_group_sid' => String,}]
+# Struct[{ 'action' => Enum['Allow','Deny'],
+#         'ensure' => Variant[String, Optional],
+#         'conditions' => Variant[Hash, Array],
+#         'exceptions' => Variant[Hash, Array, Optional],
+#         'description' => Variant[String, Optional],
+#         'rule_type' => Enum['path','hash','publisher'],
+#         'type'        => Variant[String, Optional],
+#         'user_or_group_sid' => String,}]
 class applocker (
   # Hash                        $exec_applocker_rules   = {},
   Struct[{ 'action'         => Enum['Allow','Deny'],
