@@ -25,7 +25,6 @@ class applocker (
 
   # Generate id for each rule, or get from existing rule. 
   $exec_applocker_rules_with_id = applocker::get_id($exec_applocker_rules, $rule_results['name_to_id'])
-  # notify { "exec rules with id ${exec_applocker_rules_with_id}": }
   $msi_applocker_rules_with_id = applocker::get_id($msi_applocker_rules, $rule_results['name_to_id'])
   $appx_applocker_rules_with_id = applocker::get_id($appx_applocker_rules, $rule_results['name_to_id'])
   $script_applocker_rules_with_id = applocker::get_id($script_applocker_rules, $rule_results['name_to_id'])
