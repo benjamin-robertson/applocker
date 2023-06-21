@@ -87,7 +87,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     end
   
     # check FilePublisherRule
-    if rule1.key?('FilePublisherRule')
+    if rule1.key?('FilePublisherRule') || rule2.key?('FilePublisherRule')
       begin
         if rule1['FilePublisherRule'].length != rule2['FilePublisherRule'].length
           return false
@@ -110,7 +110,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     end
   
     # check FilePathRule
-    if rule1.key?('FilePathRule')
+    if rule1.key?('FilePathRule') || rule2.key?('FilePathRule')
       begin
         if rule1['FilePathRule'].length != rule2['FilePathRule'].length
           return false
@@ -133,7 +133,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     end
 
     # check FileHashRule.
-    if rule1.key?('FileHashRule')
+    if rule1.key?('FileHashRule') || rule2.key?('FileHashRule')
       begin
         if rule1['FileHashRule'].length != rule2['FileHashRule'].length
           return false
