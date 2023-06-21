@@ -101,14 +101,14 @@
 </FilePathRule>
    <% } -%>
 <%# File publisher rule -%>
-<%   if $value['rule_type'] == 'publisher' { -%>
+<%  if $value['rule_type'] == 'publisher' { -%>
 <FilePublisherRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
 <Conditions>
         <FilePublisherCondition PublisherName="<%= $value['conditions']['publisher']%>" ProductName="<%= $value['conditions']['product']%>" BinaryName="<%= $value['conditions']['binaryname']%>">
         <BinaryVersionRange LowSection="<%= $value['conditions']['lo_version']%>" HighSection="<%= $value['conditions']['hi_version']%>" />
         </FilePublisherCondition>
 </Conditions>
-<%     if $value['exceptions'] { -%>
+<%  if $value['exceptions'] { -%>
 <Exceptions>
     <% $value['exceptions'].each | $exception_value | { -%>
       <FilePublisherCondition PublisherName="<%= $exception_value['publisher']%>" ProductName="<%= $exception_value['product']%>" BinaryName="<%= $exception_value['binaryname']%>">
@@ -119,7 +119,19 @@
 <%     } -%>
 </FilePublisherRule>
 <% } -%>
-<%# need to complete File hash -%>
+<%  if $value['rule_type'] == 'hash' { -%>
+<%# File hash rule -%>
+<FileHashRule Id="<%= $value['id'] %>" Name="<%= $key %>" Description="<%= $value['description'] %>" UserOrGroupSid="<%= $value['user_or_group_sid'] %>" Action="<%= $value['action'] %>">
+<% if $value['conditions'] { -%>
+<Conditions>
+<FiileHashCondition>
+   <% $value['conditions'].each | $condition_value | { -%>
+     <FileHash Type="<%= $condition_value['type'] %>" SourceFileLength="<%= $condition_value['length'] %>" SourceFileName="<%= $condition_value['file_name'] %>" Data="<%= $condition_value['hash'] %>" />
+   <% } -%>
+<FileHashCondition>
+</Conditions>
+<% } -%>
+<% } -%>
 <% } -%>
 </RuleCollection>
 <% } -%>
