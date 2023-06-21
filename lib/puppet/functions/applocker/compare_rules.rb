@@ -132,7 +132,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
       end
     end
 
-    # check FileHashRule
+    # check FileHashRule.
     if rule1.key?('FileHashRule')
       begin
         if rule1['FileHashRule'].length != rule2['FileHashRule'].length
