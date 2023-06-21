@@ -19,7 +19,6 @@ applocker::exec_applocker_rules:
     type: "Exe" # Not required, we know its a exe rule. We can leave option in for backwards support
     user_or_group_sid: "S-1-1-0"
   Exec %%PROGRAMFILES/%:
-    ensure: "present"
     action: "Allow"
     conditions:
       path: "%PROGRAMFILES%\\*"
@@ -28,7 +27,6 @@ applocker::exec_applocker_rules:
     type: "Exe"
     user_or_group_sid: "S-1-1-0"
   Exec %OSDRIVE/CHOCO/%:
-    ensure: "present"
     action: "Allow"
     conditions:
       path: "%OSDRIVE%\\CHOCO\\*"
@@ -37,7 +35,6 @@ applocker::exec_applocker_rules:
     type: "Exe"
     user_or_group_sid: "S-1-1-0"
   Exec %OSDRIVE/temp/%:
-    # ensure: "present"
     action: "Allow"
     conditions:
       path: "%OSDRIVE%\\temp\\*"
@@ -59,7 +56,6 @@ applocker::exec_applocker_rules:
 
 applocker::script_applocker_rules:
   Script %WINDIR/%:
-    ensure: "present"
     action: "Allow"
     conditions:
       path: "%WINDIR%\\*"
@@ -80,7 +76,6 @@ applocker::script_applocker_rules:
     type: "Script"
     user_or_group_sid: "S-1-1-0"
   Script %PROGRAMFILES/%:
-    ensure: "present"
     action: "Allow"
     conditions:
       path: "%PROGRAMFILES%\\*"
@@ -89,7 +84,6 @@ applocker::script_applocker_rules:
     type: "Script"
     user_or_group_sid: "S-1-1-0"
   Script powershell hash:
-    # ensure: "present"
     action: "Allow"
     description: "random test powershell script"
     conditions:
@@ -103,7 +97,6 @@ applocker::script_applocker_rules:
 
 applocker::dll_applocker_rules:
   DLL %PROGRAMFILES/%:
-    ensure: "present"
     action: "Allow"
     conditions:
       path: "%PROGRAMFILES%\\*"
@@ -112,7 +105,6 @@ applocker::dll_applocker_rules:
     type: "Dll"
     user_or_group_sid: "S-1-1-0"
   DLL %WINDIR/%:
-    ensure: "present"
     action: "Allow"
     conditions:
       path: "%WINDIR%\\*"
