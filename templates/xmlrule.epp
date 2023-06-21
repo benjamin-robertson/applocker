@@ -128,7 +128,7 @@
    <% $value['conditions'].each | $condition_value | { -%>
      <FileHash Type="<%= $condition_value['type'] %>" SourceFileLength="<%= $condition_value['length'] %>" SourceFileName="<%= $condition_value['file_name'] %>" Data="<%= $condition_value['hash'] %>" />
    <% } -%>
-<FileHashCondition>
+</FileHashCondition>
 </Conditions>
 <% } -%>
 <% } -%>
