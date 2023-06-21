@@ -131,6 +131,29 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
         return false
       end
     end
+
+    # check FileHashRule
+    if rule1.key?('FileHashRule')
+      begin
+        if rule1['FileHashRule'].length != rule2['FileHashRule'].length
+          return false
+        end
+        rule1['FileHashRule'].each do | element |
+          rule2['FileHashRule'].each do | element2 |
+            if element == element2
+              matched = true
+            end
+          end
+          # confirm each rule matched
+          if matched == false
+            return false
+          end
+          matched = false
+        end
+      rescue => exception
+        return false
+      end
+    end
     
     # Check if there was a match
     return true
