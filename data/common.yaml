@@ -88,18 +88,17 @@ applocker::script_applocker_rules:
     rule_type: "path"
     type: "Script"
     user_or_group_sid: "S-1-1-0"
-  # Script powershell hash:
-  #   # ensure: "present"
-  #   action: "Allow"
-  #   description: "random test powershell script"
-  #   conditions:
-  #     - type: "SHA256"
-  #       length: "20"
-  #       file_name: "powerfulshell.ps1"
-  #       hash: "0x2057696D8662313670D36C3A3C8009FB038C8732C40C65275F158F63AAAD1629"
-  #   rule_type: "hash"
-  #   type: "Exe"
-  #   user_or_group_sid: "S-1-1-0"
+  Script powershell hash:
+    # ensure: "present"
+    action: "Allow"
+    description: "random test powershell script"
+    conditions:
+      - type: "SHA256"
+        length: "20"
+        file_name: "powerfulshell.ps1"
+        hash: "0x2057696D8662313670D36C3A3C8009FB038C8732C40C65275F158F63AAAD1629"
+    rule_type: "hash"
+    user_or_group_sid: "S-1-1-0"
 
 
 applocker::dll_applocker_rules:
