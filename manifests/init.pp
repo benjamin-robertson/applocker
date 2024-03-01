@@ -94,7 +94,8 @@ class applocker (
   }
 
   file { 'c:\temp\policies':
-    ensure => directory,
+    ensure  => directory,
+    recurse => true,
   }
   file { 'c:\temp\policies\facts.txt':
     ensure  => file,
