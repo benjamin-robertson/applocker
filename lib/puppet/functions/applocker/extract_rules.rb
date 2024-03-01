@@ -29,6 +29,11 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
     }
     name_to_id = {}
 
+    # check rules exist
+    if rules['RuleCollection'].length == 0
+      return {}
+    end
+
     # Loop through Rules and populate hash values
     rules['RuleCollection'].each do |array|
       rule_status[array['Type']] = array['EnforcementMode']
