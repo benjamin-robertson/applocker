@@ -39,7 +39,7 @@ class applocker (
   # Break down structure using function, We want to retrieve all the names of each rules type and return
   $rule_results = applocker::extract_rules($hash_policy)
 
-  $rule_results_exec = defined($rule_results['name_to_id']) ? {
+  $rule_results_exec = defined('$rule_results[\'name_to_id\']') ? {
     true    => $rule_results['name_to_id'],
     default => {},
   }
