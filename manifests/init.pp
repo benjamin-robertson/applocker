@@ -39,17 +39,18 @@ class applocker (
   # Break down structure using function, We want to retrieve all the names of each rules type and return
   $rule_results = applocker::extract_rules($hash_policy)
 
-  $rule_results_exec = defined('$rule_results[\'name_to_id\']') ? {
+  # Check if we have any rules set
+  $rule_results_final = defined('$rule_results[\'name_to_id\']') ? {
     true    => $rule_results['name_to_id'],
     default => {},
   }
 
   # Generate id for each rule, or get from existing rule. 
-  $exec_applocker_rules_with_id = applocker::get_id($exec_applocker_rules, $rule_results_exec)
-  $msi_applocker_rules_with_id = applocker::get_id($msi_applocker_rules, $rule_results['name_to_id'])
-  $appx_applocker_rules_with_id = applocker::get_id($appx_applocker_rules, $rule_results['name_to_id'])
-  $script_applocker_rules_with_id = applocker::get_id($script_applocker_rules, $rule_results['name_to_id'])
-  $dll_applocker_rules_with_id = applocker::get_id($dll_applocker_rules, $rule_results['name_to_id'])
+  $exec_applocker_rules_with_id = applocker::get_id($exec_applocker_rules, $rule_results_final)
+  $msi_applocker_rules_with_id = applocker::get_id($msi_applocker_rules, $rule_results_final)
+  $appx_applocker_rules_with_id = applocker::get_id($appx_applocker_rules, $rule_results_final)
+  $script_applocker_rules_with_id = applocker::get_id($script_applocker_rules, $rule_results_final)
+  $dll_applocker_rules_with_id = applocker::get_id($dll_applocker_rules, $rule_results_final)
 
   # create xml file
   file { 'policy file':
