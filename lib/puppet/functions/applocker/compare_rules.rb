@@ -78,14 +78,13 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
         end
       end
     else
-      return {}
+      return { 'EnforcementMode' => 'no_match' }
     end
   end
   
   def rule_comparison(rule1, rule2)
     matched = false
   
-    puts "i am rule_comparison"
     # check enforcement mode
     if rule1['EnforcementMode'] != rule2['EnforcementMode']
       return false
