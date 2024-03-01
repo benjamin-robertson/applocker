@@ -1,5 +1,10 @@
 # applocker
 
+** Need to install xmlsimple locally on the Puppet Primary server **
+```puppetserver gem install xml-simple```
+
+Must restart server after
+
 Welcome to your new module. A short overview of the generated parts can be found
 in the [PDK documentation][1].
 
