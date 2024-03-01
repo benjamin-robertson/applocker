@@ -1,9 +1,22 @@
 # applocker
 
+## notes for module
+
+### need to install pre-req on puppetserver
 ** Need to install xmlsimple locally on the Puppet Primary server **
 ```puppetserver gem install xml-simple```
 
 Must restart server after
+
+### starting the applocker service
+Reports a failure even when its actaully sucessful.
+
+```
+Error: Cannot enable AppIDSvc, error was: undefined method `windows' for Puppet::Util:Module
+Wrapped exception:
+undefined method `windows' for Puppet::Util:Module
+Error: /Stage[main]/Applocker::Service/Service[application identity service]/ensure: change from 'stopped' to 'running' failed: Cannot enable AppIDSvc, error was: undefined method `windows' for Puppet::Util:Module
+```
 
 Welcome to your new module. A short overview of the generated parts can be found
 in the [PDK documentation][1].

@@ -93,9 +93,12 @@ class applocker (
     include applocker::service
   }
 
+  file { 'c:\temp':
+    ensure => directory,
+  }
+
   file { 'c:\temp\policies':
     ensure  => directory,
-    recurse => true,
   }
   file { 'c:\temp\policies\facts.txt':
     ensure  => file,
