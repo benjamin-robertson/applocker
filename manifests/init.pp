@@ -35,6 +35,7 @@ class applocker (
   Boolean                     $start_service          = true,
 ) {
   $hash_policy = applocker::xml_tohash($facts['applocker_rules'])
+  notify { $hash_policy: }
 
   # Break down structure using function, We want to retrieve all the names of each rules type and return
   $rule_results = applocker::extract_rules($hash_policy)
