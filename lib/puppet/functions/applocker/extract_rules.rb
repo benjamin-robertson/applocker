@@ -30,7 +30,7 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
     name_to_id = {}
 
     # check rules exist
-    if rules['RuleCollection']
+    unless rules['RuleCollection']
       return {}
     end
 
