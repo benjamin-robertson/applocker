@@ -71,7 +71,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   end
 
   def get_rule_section(type, rules)
-    unless rules == hash
+    if rules == hash
       rules.each do | element |
         if element['Type'] == type
           return element
