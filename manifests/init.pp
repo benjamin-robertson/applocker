@@ -35,18 +35,18 @@ class applocker (
   Boolean                     $start_service          = true,
 ) {
   $hash_policy = applocker::xml_tohash($facts['applocker_rules'])
-  notify { "Hash_policy: ${hash_policy}": }
+  # notify { "Hash_policy: ${hash_policy}": }
 
   # Break down structure using function, We want to retrieve all the names of each rules type and return
   $rule_results = applocker::extract_rules($hash_policy)
-  notify { "Rules_results: ${rule_results}": }
+  # notify { "Rules_results: ${rule_results}": }
 
   # Check if we have any rules set
   $rule_results_final = defined('$rule_results[\'name_to_id\']') ? {
     true    => $rule_results['name_to_id'],
     default => {},
   }
-  notify { "rule_results_final: ${rule_results_final}": }
+  # notify { "rule_results_final: ${rule_results_final}": }
 
   # Generate id for each rule, or get from existing rule. 
   $exec_applocker_rules_with_id = applocker::get_id($exec_applocker_rules, $rule_results_final)
@@ -83,6 +83,8 @@ class applocker (
         'script_rules'           => $script_rules,
   'packaged_app_rules'           => $packaged_app_rules, }))
 
+  notify { "hash_policy: ${hash_policy}": }
+  notify { "proposed_rules: ${proposed_rules}": }
   $rule_check_results = applocker::compare_rules($hash_policy, $proposed_rules)
   notify { "rule_check_results: ${rule_check_results}": }
   if $rule_check_results['Result'] == false {
