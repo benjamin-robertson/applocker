@@ -88,7 +88,7 @@ class applocker (
   exec { 'Verify applocker policy':
     path      => 'C:/Windows/System32/WindowsPowerShell/v1.0',
     command   => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy_test.xml -path C:\\windows\\notepad.exe',
-    logoutput => true,
+    # logoutput => true,
   }
 
   # notify { "hash_policy: ${hash_policy}": }
