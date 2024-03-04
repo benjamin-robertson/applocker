@@ -85,11 +85,11 @@ class applocker (
   'packaged_app_rules'           => $packaged_app_rules, }))
 
   # Verify policy
-  exec { 'Verify applocker policy':
+  exec { 'Verify applocker policy failed':
     path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
-    command => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy_test.xml -path C:\\windows\\notepad.exe',
-    unless  => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy_test.xml -path C:\\windows\\notepad.exe',
-    # logoutput => true,
+    command => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy.xml -path C:\\windows\\notepad.exe',
+    unless  => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy.xml -path C:\\windows\\notepad.exe',
+    require => File['policy file'],
   }
 
   # notify { "hash_policy: ${hash_policy}": }
@@ -100,7 +100,7 @@ class applocker (
     notify { "Rules don\'t match. Results ${rule_check_results}": }
     exec { 'Update applocker rules':
       path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
-      command => 'powershell Set-AppLockerPolicy -XMLPolicy c:\windows\applocker_puppet_policy.xml',
+      command => 'powershell Set-AppLockerPolicy -XMLPolicy c:\\windows\\applocker_puppet_policy.xml',
       onlyif  => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy.xml -path C:\\windows\\notepad.exe',
     }
   }
