@@ -87,7 +87,7 @@ class applocker (
   # notify { "hash_policy: ${hash_policy}": }
   # notify { "proposed_rules: ${proposed_rules}": }
   $rule_check_results = applocker::compare_rules($hash_policy, $proposed_rules)
-  # notify { "rule_check_results: ${rule_check_results}": }
+  notify { "rule_check_results: ${rule_check_results}": }
   if $rule_check_results['Result'] == false {
     notify { "Rules don\'t match. Results ${rule_check_results}": }
     exec { 'Update applocker rules':
