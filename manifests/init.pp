@@ -4,24 +4,18 @@
 #
 # lint:ignore:140chars
 # @param exec_applocker_rules Exec applocker rules to configure. 
-# ```
-#   Exec %windir/%:
-#     ensure: "present" # No longer required. We can leave option in for backwards support
-#     action: "Allow"
-#     conditions:
-#       path: "%WINDIR%\\*"
-#     exceptions:
-#       - '%System32%\Microsoft\Crypto\RSA\MachineKeys\*'
-#       - '%SYSTEM32%\spool\drivers\color\*'
-#       - '%SYSTEM32%\Tasks\*'
-#       - '%WINDIR%\Tasks\*'
-#       - '%WINDIR%\Temp\*'
-#     description: "Allow all users to run apps in windir"
-#     rule_type: "path"
-#     type: "Exe" # Not required, we know its a exe rule. We can leave option in for backwards support
-#     user_or_group_sid: "S-1-1-0"
-#     ```
-#   include applocker
+# @param msi_applocker_rules msi applocker rules to configure.
+# @param appx_applocker_rules Packaged app rules to configure.
+# @param script_applocker_rules scipt applocker rules to configure.
+# @param dll_applocker_rules dll applocker rules to configure.
+# @param executable_rules Mode for executable rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
+# @param msi_rules Mode for msi rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
+# @param dll_rules Mode for dll rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
+# @param script_rules Mode for script rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
+# @param packaged_app_rules Mode for packaged app rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
+# @param start_service Whether to start the applocker service. Default: true
+# @example
+#  include applocker
 class applocker (
   Hash                        $exec_applocker_rules   = {},
   Hash                        $msi_applocker_rules    = {},
@@ -93,10 +87,10 @@ class applocker (
     require => File['policy file'],
   }
 
-  # notify { "hash_policy: ${hash_policy}": }
-  # notify { "proposed_rules: ${proposed_rules}": }
+  notify { "hash_policy: ${hash_policy}": }
+  notify { "proposed_rules: ${proposed_rules}": }
   $rule_check_results = applocker::compare_rules($hash_policy, $proposed_rules)
-  # notify { "rule_check_results: ${rule_check_results}": }
+  notify { "rule_check_results: ${rule_check_results}": }
   if $rule_check_results['Result'] == false {
     notify { "Rules don\'t match. Results ${rule_check_results}": }
     exec { 'Update applocker rules':

@@ -16,7 +16,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     rule_collection = rules['RuleCollection']
     desired_collection = desired_rules['RuleCollection']
 
-    unless rules['RuleCollection'] and desired_rules['RuleCollection']
+    unless rules['RuleCollection'] && desired_rules['RuleCollection']
       # no rules found in one of the hashes
       return { 'Result' => false }
     end
@@ -26,7 +26,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     appx_b = get_rule_section('Appx', desired_collection)
     appx_result = rule_comparison(appx_a, appx_b)
 
-    if appx_result == false 
+    if appx_result == false
       return { 'Result' => false,
                'failing_rule' => 'Appx' }
     end
@@ -36,7 +36,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     dll_b = get_rule_section('Dll', desired_collection)
     dll_result = rule_comparison(dll_a, dll_b)
 
-    if dll_result == false 
+    if dll_result == false
       return { 'Result' => false,
                'failing_rule' => 'Dll' }
     end
@@ -46,7 +46,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     exe_b = get_rule_section('Exe', desired_collection)
     exe_result = rule_comparison(exe_a, exe_b)
 
-    if exe_result == false 
+    if exe_result == false
       return { 'Result' => false,
                'failing_rule' => 'Exe' }
     end
@@ -56,7 +56,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     msi_b = get_rule_section('Msi', desired_collection)
     msi_result = rule_comparison(msi_a, msi_b)
 
-    if msi_result == false 
+    if msi_result == false
       return { 'Result' => false,
                'failing_rule' => 'Msi' }
     end
@@ -66,13 +66,12 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     script_b = get_rule_section('Script', desired_collection)
     script_result = rule_comparison(script_a, script_b)
 
-    if script_result == false 
+    if script_result == false
       return { 'Result' => false,
                'failing_rule' => 'Script' }
     end
 
-    return { 'Result' => true }
-
+    { 'Result' => true }
   end
 
   def get_rule_section(type, rules)

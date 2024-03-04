@@ -24,24 +24,14 @@
 Configures applocker rules for windows. See readme on how to structure applocker rules.
 
 lint:ignore:140chars
+
+#### Examples
+
+##### 
+
+```puppet
+include applocker
 ```
-  Exec %windir/%:
-    ensure: "present" # No longer required. We can leave option in for backwards support
-    action: "Allow"
-    conditions:
-      path: "%WINDIR%\\*"
-    exceptions:
-      - '%System32%\Microsoft\Crypto\RSA\MachineKeys\*'
-      - '%SYSTEM32%\spool\drivers\color\*'
-      - '%SYSTEM32%\Tasks\*'
-      - '%WINDIR%\Tasks\*'
-      - '%WINDIR%\Temp\*'
-    description: "Allow all users to run apps in windir"
-    rule_type: "path"
-    type: "Exe" # Not required, we know its a exe rule. We can leave option in for backwards support
-    user_or_group_sid: "S-1-1-0"
-    ```
-  include applocker
 
 #### Parameters
 
@@ -71,7 +61,7 @@ Default value: `{}`
 
 Data type: `Hash`
 
-
+msi applocker rules to configure.
 
 Default value: `{}`
 
@@ -79,7 +69,7 @@ Default value: `{}`
 
 Data type: `Hash`
 
-
+Packaged app rules to configure.
 
 Default value: `{}`
 
@@ -87,7 +77,7 @@ Default value: `{}`
 
 Data type: `Hash`
 
-
+scipt applocker rules to configure.
 
 Default value: `{}`
 
@@ -95,7 +85,7 @@ Default value: `{}`
 
 Data type: `Hash`
 
-
+dll applocker rules to configure.
 
 Default value: `{}`
 
@@ -103,7 +93,7 @@ Default value: `{}`
 
 Data type: `Enum['Enabled','AuditOnly']`
 
-
+Mode for executable rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
 
 Default value: `'AuditOnly'`
 
@@ -111,7 +101,7 @@ Default value: `'AuditOnly'`
 
 Data type: `Enum['Enabled','AuditOnly']`
 
-
+Mode for msi rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
 
 Default value: `'AuditOnly'`
 
@@ -119,7 +109,7 @@ Default value: `'AuditOnly'`
 
 Data type: `Enum['Enabled','AuditOnly']`
 
-
+Mode for dll rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
 
 Default value: `'AuditOnly'`
 
@@ -127,7 +117,7 @@ Default value: `'AuditOnly'`
 
 Data type: `Enum['Enabled','AuditOnly']`
 
-
+Mode for script rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
 
 Default value: `'AuditOnly'`
 
@@ -135,7 +125,7 @@ Default value: `'AuditOnly'`
 
 Data type: `Enum['Enabled','AuditOnly']`
 
-
+Mode for packaged app rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
 
 Default value: `'AuditOnly'`
 
@@ -143,7 +133,7 @@ Default value: `'AuditOnly'`
 
 Data type: `Boolean`
 
-
+Whether to start the applocker service. Default: true
 
 Default value: ``true``
 
