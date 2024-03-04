@@ -42,7 +42,7 @@ class applocker (
   notify { "Rules_results: ${rule_results}": }
 
   # Check if we have any rules set
-  $rule_results_final = defined('$rule_results[\'name_to_id\']') ? {
+  $rule_results_final = defined('rule_results[\'name_to_id\']') ? {
     true    => $rule_results['name_to_id'],
     default => {},
   }
