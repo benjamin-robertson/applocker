@@ -46,7 +46,7 @@ class applocker (
     true    => $rule_results['name_to_id'],
     default => {},
   }
-  notify { "defined check: ${defined('$rule_results[\'name_to_id\']')}": }
+  notify { "defined check: ${defined('rule_results[\'name_to_id\']')}": }
   # notify { "rule_results_final: ${rule_results_final}": }
 
   # Generate id for each rule, or get from existing rule. 
