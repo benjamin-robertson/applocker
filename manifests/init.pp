@@ -84,7 +84,7 @@ class applocker (
         'script_rules'           => $script_rules,
   'packaged_app_rules'           => $packaged_app_rules, }))
 
-  # Verify policy
+  # Verify applocker policy defined by user is valid.
   exec { 'Verify applocker policy failed':
     path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
     command => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy.xml -path C:\\windows\\notepad.exe',
@@ -102,6 +102,7 @@ class applocker (
       path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
       command => 'powershell Set-AppLockerPolicy -XMLPolicy c:\\windows\\applocker_puppet_policy.xml',
       onlyif  => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy.xml -path C:\\windows\\notepad.exe',
+      require => File['policy file'],
     }
   }
 
