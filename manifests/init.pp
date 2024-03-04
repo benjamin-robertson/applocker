@@ -84,7 +84,7 @@ class applocker (
         'script_rules'           => $script_rules,
   'packaged_app_rules'           => $packaged_app_rules, }))
 
-  $valid_policy = Deferred('applocker::verify_rules', ['c:\\windows\\applocker_puppet_policy_test.xml'])
+  $valid_policy = Deferred('applocker::verify_rules', ['c:\\windows\\applocker_puppet_policy.xml'])
   if $valid_policy == true {
     notify { 'Valid policy':
     }
