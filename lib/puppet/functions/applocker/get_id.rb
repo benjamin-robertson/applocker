@@ -15,7 +15,7 @@ Puppet::Functions.create_function(:"applocker::get_id") do
   # so change x to suit your needs although only one parameter is required
   # as defined in the dispatch method.
   def get_id(applocker_rules, name_to_id)
-    applocker_with_id = applocker_rules.dup()
+    applocker_with_id = applocker_rules.dup
     applocker_rules.each do |key, _value|
       # Check if the id is already defined.
       if name_to_id.key?(key)
