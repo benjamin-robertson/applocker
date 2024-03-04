@@ -7,7 +7,7 @@ applocker::exec_applocker_rules:
     ensure: "present" # No longer required. We can leave option in for backwards support
     action: "Allow"
     conditions:
-      paths: "%WINDIR%\\*"
+      path: "%WINDIR%\\*"
     exceptions:
       - '%System32%\Microsoft\Crypto\RSA\MachineKeys\*'
       - '%SYSTEM32%\spool\drivers\color\*'
