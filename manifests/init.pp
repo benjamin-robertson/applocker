@@ -54,7 +54,7 @@ class applocker (
   # create xml file
   file { 'policy file':
     ensure  => file,
-    path    => 'c:\windows\applocker_puppet_policy.xml',
+    path    => '%SystemDrive%\\applocker_puppet_policy.xml',
     content => epp('applocker/xmlrule.epp', {
         'exec_applocker_rules'   => $exec_applocker_rules_with_id,
         'msi_applocker_rules'    => $msi_applocker_rules_with_id,
@@ -87,10 +87,7 @@ class applocker (
     require => File['policy file'],
   }
 
-  notify { "hash_policy: ${hash_policy}": }
-  notify { "proposed_rules: ${proposed_rules}": }
   $rule_check_results = applocker::compare_rules($hash_policy, $proposed_rules)
-  notify { "rule_check_results: ${rule_check_results}": }
   if $rule_check_results['Result'] == false {
     notify { "Rules don\'t match. Results ${rule_check_results}": }
     exec { 'Update applocker rules':
