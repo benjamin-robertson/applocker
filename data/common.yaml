@@ -37,7 +37,7 @@ applocker::exec_applocker_rules:
   Exec %OSDRIVE/temp/%:
     action: "Allow"
     conditions:
-      path: "%OSDRIVE%\\temp\\*"
+      path: "%OSDRIVE%\\temp\\doge\\*"
     description: "Allow all users to run apps in osdrive temp"
     rule_type: "path"
     type: "Exe"
