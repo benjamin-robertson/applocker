@@ -84,15 +84,12 @@ class applocker (
         'script_rules'           => $script_rules,
   'packaged_app_rules'           => $packaged_app_rules, }))
 
-  $valid_policy = Deferred('applocker::verify_rules', ['c:\\windows\\applocker_puppet_policy.xml'])
-  if $valid_policy == true {
-    notify { 'Valid policy':
-    }
-  } else {
-    notify { 'Not valid policy':
-    }
+  # Verify policy
+  exec { 'Verify applocker policy':
+    path      => 'C:/Windows/System32/WindowsPowerShell/v1.0',
+    command   => 'Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy.xml -path C:\\windows\\notepad.exe',
+    logoutput => true,
   }
-  notify { "Valid policy: ${valid_policy}": }
 
   # notify { "hash_policy: ${hash_policy}": }
   # notify { "proposed_rules: ${proposed_rules}": }
