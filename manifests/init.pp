@@ -42,11 +42,11 @@ class applocker (
   notify { "Rules_results: ${rule_results}": }
 
   # Check if we have any rules set
-  $rule_results_final = defined('rule_results[\'name_to_id\']') ? {
-    true    => $rule_results['name_to_id'],
-    default => {},
+  $rule_results_final = $rule_results.dig('name_to_id') ? {
+    undef   => {},
+    default => $rule_results['name_to_id'],
   }
-  notify { "defined check: ${defined('rule_results[\'name_to_id\']')}": }
+  notify { "defined check: ${$rule_results.dig('name_to_id')}": }
   # notify { "rule_results_final: ${rule_results_final}": }
 
   # Generate id for each rule, or get from existing rule. 
