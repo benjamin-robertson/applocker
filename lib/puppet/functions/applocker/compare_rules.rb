@@ -16,7 +16,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     rule_collection = rules['RuleCollection']
     desired_collection = desired_rules['RuleCollection']
 
-    unless rules['RuleCollection'] or desired_rules['RuleCollection']
+    unless rules['RuleCollection']
       # no rules found
       return { 'Result' => false }
     end
