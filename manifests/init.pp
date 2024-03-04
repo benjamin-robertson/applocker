@@ -84,6 +84,9 @@ class applocker (
         'script_rules'           => $script_rules,
   'packaged_app_rules'           => $packaged_app_rules, }))
 
+  $valid_policy = Deferred('applocker::verify_rules', ['c:\windows\applocker_puppet_policy.xml'])
+  notify { "Valid policy: ${valid_policy}": }
+
   # notify { "hash_policy: ${hash_policy}": }
   # notify { "proposed_rules: ${proposed_rules}": }
   $rule_check_results = applocker::compare_rules($hash_policy, $proposed_rules)
