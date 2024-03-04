@@ -71,7 +71,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
                'failing_rule' => 'Script' }
     end
 
-    return { 'Result' => true }
+    return { 'Result' => true, 'exe_a' => exe_a, 'exe_b' => exe_b, 'exe_result' => exe_result }
 
   end
 
