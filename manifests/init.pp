@@ -88,6 +88,9 @@ class applocker (
   if $valid_policy == true {
     notify { 'Valid policy':
     }
+  } else {
+    notify { 'Not valid policy':
+    }
   }
   # notify { "Valid policy: ${valid_policy}": }
 
