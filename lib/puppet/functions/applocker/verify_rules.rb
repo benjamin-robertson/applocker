@@ -13,7 +13,7 @@ Puppet::Functions.create_function(:"applocker::verify_rules") do
   # required parameters below and puppet will enforce these
   # so change x to suit your needs although only one parameter is required
   # as defined in the dispatch method.
-  def verify_rules(x)
+  def verify_rules(applocker_xml_path)
     output, status = Open3.capture2("C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe Test-AppLockerPolicy -XmlPolicy #{applocker_xml_path} -path C:\\windows\\notepad.exe")
 
     if status == 0
