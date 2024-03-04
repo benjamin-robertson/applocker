@@ -1,28 +1,29 @@
-# @summary A short summary of the purpose of this class
+# @summary Set applocker rules for windows
 #
-# A description of what this class does
+# Configures applocker rules for windows. See readme on how to structure applocker rules.
 #
 # lint:ignore:140chars
-# @example
+# @param exec_applocker_rules Exec applocker rules to configure. 
+# ```
+#   Exec %windir/%:
+#     ensure: "present" # No longer required. We can leave option in for backwards support
+#     action: "Allow"
+#     conditions:
+#       path: "%WINDIR%\\*"
+#     exceptions:
+#       - '%System32%\Microsoft\Crypto\RSA\MachineKeys\*'
+#       - '%SYSTEM32%\spool\drivers\color\*'
+#       - '%SYSTEM32%\Tasks\*'
+#       - '%WINDIR%\Tasks\*'
+#       - '%WINDIR%\Temp\*'
+#     description: "Allow all users to run apps in windir"
+#     rule_type: "path"
+#     type: "Exe" # Not required, we know its a exe rule. We can leave option in for backwards support
+#     user_or_group_sid: "S-1-1-0"
+#     ```
 #   include applocker
-# Struct[{ 'action' => Enum['Allow','Deny'],
-#         'ensure' => Variant[String, Optional],
-#         'conditions' => Variant[Hash, Array],
-#         'exceptions' => Variant[Hash, Array, Optional],
-#         'description' => Variant[String, Optional],
-#         'rule_type' => Enum['path','hash','publisher'],
-#         'type'        => Variant[String, Optional],
-#         'user_or_group_sid' => String,}]
 class applocker (
   Hash                        $exec_applocker_rules   = {},
-  # Struct[{ 'action'         => Enum['Allow','Deny'],
-  #     'ensure'            => Variant[String, Optional],
-  #     'conditions'        => Variant[Hash, Array],
-  #     'exceptions'        => Variant[Hash, Array, Optional],
-  #     'description'       => Variant[String, Optional],
-  #     'rule_type'         => Enum['path','hash','publisher'],
-  #     'type'              => Variant[String, Optional],
-  # 'user_or_group_sid' => String }] $exec_applocker_rules = {},
   Hash                        $msi_applocker_rules    = {},
   Hash                        $appx_applocker_rules   = {},
   Hash                        $script_applocker_rules = {},
