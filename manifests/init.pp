@@ -92,7 +92,7 @@ class applocker (
     notify { 'Not valid policy':
     }
   }
-  # notify { "Valid policy: ${valid_policy}": }
+  notify { "Valid policy: ${valid_policy}": }
 
   # notify { "hash_policy: ${hash_policy}": }
   # notify { "proposed_rules: ${proposed_rules}": }
