@@ -75,33 +75,31 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   end
 
   def get_rule_section(type, rules)
-    begin
-      rules.each do | element |
-        if element['Type'] == type
-          return element
-        end
+    rules.each do |element|
+      if element['Type'] == type
+        return element
       end
-    rescue
-      return { 'EnforcementMode' => 'no_match' }
     end
+  rescue
+    { 'EnforcementMode' => 'no_match' }
   end
-  
+
   def rule_comparison(rule1, rule2)
     matched = false
-  
+
     # check enforcement mode
     if rule1['EnforcementMode'] != rule2['EnforcementMode']
       return false
     end
-  
+
     # check FilePublisherRule
     if rule1.key?('FilePublisherRule') || rule2.key?('FilePublisherRule')
       begin
         if rule1['FilePublisherRule'].length != rule2['FilePublisherRule'].length
           return false
         end
-        rule1['FilePublisherRule'].each do | element |
-          rule2['FilePublisherRule'].each do | element2 |
+        rule1['FilePublisherRule'].each do |element|
+          rule2['FilePublisherRule'].each do |element2|
             if element == element2
               matched = true
             end
@@ -112,19 +110,19 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
           end
           matched = false
         end
-      rescue => exception
+      rescue
         return false
       end
     end
-  
+
     # check FilePathRule
     if rule1.key?('FilePathRule') || rule2.key?('FilePathRule')
       begin
         if rule1['FilePathRule'].length != rule2['FilePathRule'].length
           return false
         end
-        rule1['FilePathRule'].each do | element |
-          rule2['FilePathRule'].each do | element2 |
+        rule1['FilePathRule'].each do |element|
+          rule2['FilePathRule'].each do |element2|
             if element == element2
               matched = true
             end
@@ -135,7 +133,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
           end
           matched = false
         end
-      rescue => exception
+      rescue
         return false
       end
     end
@@ -146,8 +144,8 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
         if rule1['FileHashRule'].length != rule2['FileHashRule'].length
           return false
         end
-        rule1['FileHashRule'].each do | element |
-          rule2['FileHashRule'].each do | element2 |
+        rule1['FileHashRule'].each do |element|
+          rule2['FileHashRule'].each do |element2|
             if element == element2
               matched = true
             end
@@ -158,13 +156,12 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
           end
           matched = false
         end
-      rescue => exception
+      rescue
         return false
       end
     end
-    
     # Check if there was a match
-    return true
+    true
   end
 
   # you can define other helper methods in this code block as well
