@@ -194,6 +194,8 @@ Lint/MixedRegexpCaptureTypes:
   Enabled: false
 Lint/NestedPercentLiteral:
   Enabled: false
+Lint/Next:
+  Enabled: false
 Lint/NonDeterministicRequireOrder:
   Enabled: false
 Lint/OrderedMagicComments:
@@ -219,6 +221,8 @@ Lint/ReturnInVoidContext:
 Lint/SafeNavigationConsistency:
   Enabled: false
 Lint/SafeNavigationWithEmpty:
+  Enabled: false
+Lint/SafeNavigation:
   Enabled: false
 Lint/SelfAssignment:
   Enabled: false
