@@ -87,8 +87,8 @@ class applocker (
   # Verify policy
   exec { 'Verify applocker policy':
     path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
-    command => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy.xml -path C:\\windows\\notepad.exe',
-    unless  => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy.xml -path C:\\windows\\notepad.exe',
+    command => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy_test.xml -path C:\\windows\\notepad.exe',
+    unless  => 'powershell Test-AppLockerPolicy -XmlPolicy c:\\windows\\applocker_puppet_policy_test.xml -path C:\\windows\\notepad.exe',
     # logoutput => true,
   }
 
