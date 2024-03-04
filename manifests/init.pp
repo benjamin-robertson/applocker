@@ -54,7 +54,7 @@ class applocker (
   # create xml file
   file { 'policy file':
     ensure  => file,
-    path    => '%SystemDrive%\\applocker_puppet_policy.xml',
+    path    => 'c:\\windows\\\applocker_puppet_policy.xml',
     content => epp('applocker/xmlrule.epp', {
         'exec_applocker_rules'   => $exec_applocker_rules_with_id,
         'msi_applocker_rules'    => $msi_applocker_rules_with_id,
