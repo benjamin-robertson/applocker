@@ -1,8 +1,8 @@
 {
   "name": "benjaminrobertson-applocker",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "benjaminrobertson",
-  "summary": "Configured applocker (Applications whitelisting) for Windows",
+  "summary": "Configures applocker (Applications whitelisting) for Windows",
   "license": "Apache-2.0",
   "source": "https://github.com/benjamin-robertson/applocker",
   "project_page": "https://github.com/benjamin-robertson/applocker",
