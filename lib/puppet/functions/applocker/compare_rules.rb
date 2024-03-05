@@ -55,7 +55,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
 
     if exe_result == false
       return { 'Result' => false,
-               'failing_rule' => 'Exe' }
+               'failing_rule' => 'Exe', 'exe_a' => exe_a, 'exe_b' => exe_b }
     end
 
     # Check Msi rules
