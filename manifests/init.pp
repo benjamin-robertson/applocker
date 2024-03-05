@@ -63,6 +63,8 @@ class applocker (
         'script_rules'           => $script_rules,
     'packaged_app_rules'         => $packaged_app_rules, }),
   }
+  # check length of rules. If all rules are empty use default empty rule string
+  notify { "lenght is ${exec_applocker_rules.length}":}
   $proposed_rules = applocker::xml_tohash(epp('applocker/xmlrule.epp', {
         'exec_applocker_rules'   => $exec_applocker_rules_with_id,
         'msi_applocker_rules'    => $msi_applocker_rules_with_id,
