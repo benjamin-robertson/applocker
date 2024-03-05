@@ -21,7 +21,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
 
     unless rules['RuleCollection'] && desired_rules['RuleCollection']
       # no rules found in one of the hashes
-      return { 'Result' => false }
+      return { 'Result' => false, 'poo' => 'test' }
     end
 
     # Check appx rules
