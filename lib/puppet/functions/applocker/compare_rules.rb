@@ -35,7 +35,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
 
     if appx_result == false
       return { 'Result' => false,
-               'failing_rule' => 'Appx' }
+               'failing_rule' => 'Appx', 'appx_a' => appx_a, 'appx_b' => appx_b }
     end
 
     # Check Dll rules
