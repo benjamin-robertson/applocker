@@ -31,7 +31,7 @@ I suggest applying applocker policies in 'AuditOnly' mode (modules default). Use
 
 ## Usage
 
-Include applocker module
+Include applocker module in Puppet manifest.
 ```
 include applocker
 ```
@@ -42,7 +42,7 @@ Get-AppLockerFileInformation .\putty.exe | Format-wide -Property hash -AutoSize
 ```
 This will print the hash which should look as follows. `0x7537EBDECCA5F65EA98216C23E9441B72269A546B3234F6CF4069C60269FE18F`
 
-Set applocker rules using hiera data as follows.
+Set applocker rules using hiera data as follows. Customise as required for your environment. 
 
 ### Exec applocker rules - Example
 ```
@@ -244,7 +244,7 @@ applocker::dll_applocker_rules:
 
 ### Enabling applocker rules
 
-Applocker rules can be enabled or disabled by setting Enum['Enabled','AuditOnly'] for the following parameters
+Applocker rules can be enabled or disabled by setting Enum['Enabled','AuditOnly'] for the following parameters.
 
 * executable_rules
 * msi_rules
