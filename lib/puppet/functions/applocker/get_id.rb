@@ -2,8 +2,11 @@
 
 require 'securerandom'
 
-# https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+# Get ID of existing applocker rules. If no existing rule by that name, a new hash is generated.
 Puppet::Functions.create_function(:"applocker::get_id") do
+  # @param applocker_rules Applocker rules to check from Puppet catalog
+  # @param name_to_id Name to ID mapping to check.
+  # @return [Hash] Hash with rulename to rule mapping.
   dispatch :get_id do
     param 'Hash', :applocker_rules
     param 'Hash', :name_to_id
@@ -15,7 +18,7 @@ Puppet::Functions.create_function(:"applocker::get_id") do
   # so change x to suit your needs although only one parameter is required
   # as defined in the dispatch method.
   def get_id(applocker_rules, name_to_id)
-    applocker_with_id = applocker_rules.dup()
+    applocker_with_id = applocker_rules.dup
     applocker_rules.each do |key, _value|
       # Check if the id is already defined.
       if name_to_id.key?(key)

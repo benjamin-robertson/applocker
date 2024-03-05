@@ -2,8 +2,10 @@
 
 require 'xmlsimple'
 
-# https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+# XML to hash
 Puppet::Functions.create_function(:"applocker::xml_tohash") do
+  # @param xml_content XML to convert to hash
+  # @return [Hash] Hash converted from XML
   dispatch :xml_tohash do
     param 'String', :xml_content
     return_type 'Hash'

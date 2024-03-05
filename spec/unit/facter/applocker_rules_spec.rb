@@ -10,9 +10,10 @@ describe :applocker_rules, type: :fact do
   before :each do
     # perform any action that should be run before every test
     Facter.clear
+    allow(Facter::Core::Execution).to receive(:execute).and_return('<AppLockerPolicy Version="1" />')
   end
 
   it 'returns a value' do
-    expect(fact.value).to eq(nil)
+    expect(fact.value).to eq('<AppLockerPolicy Version="1" />')
   end
 end

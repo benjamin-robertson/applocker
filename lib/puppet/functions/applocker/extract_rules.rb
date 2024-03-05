@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-# https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+# Extract applocker rules
 Puppet::Functions.create_function(:"applocker::extract_rules") do
+  # @param rules Applocker rules to extract
+  # @return [Hash] Hash of all applocker rules in policy along with the rule hash.
   dispatch :extract_rules do
     param 'Hash', :rules
     return_type 'Hash'
@@ -29,6 +31,11 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
     }
     name_to_id = {}
 
+    # check rules exist
+    unless rules['RuleCollection']
+      return {}
+    end
+
     # Loop through Rules and populate hash values
     rules['RuleCollection'].each do |array|
       rule_status[array['Type']] = array['EnforcementMode']
@@ -46,7 +53,13 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
           name_to_id[value['Name']] = value['Id']
         end
       end
-      # need to code in filehash rule. But need to get this working first.
+      if array['FileHashRule']
+        array['FileHashRule'].each do |value|
+          hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
+          rule_hash[array['Type']].push(hash_tmp)
+          name_to_id[value['Name']] = value['Id']
+        end
+      end
     end
     return_hash = { 'rule_status' => rule_status, 'rule_hash' => rule_hash, 'name_to_id' => name_to_id }
     return_hash
