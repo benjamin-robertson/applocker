@@ -35,7 +35,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
 
     if appx_result == false
       return { 'Result' => false,
-               'failing_rule' => 'Appx', 'appx_a' => appx_a, 'appx_b' => appx_b }
+               'failing_rule' => 'Appx' }
     end
 
     # Check Dll rules
@@ -55,7 +55,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
 
     if exe_result == false
       return { 'Result' => false,
-               'failing_rule' => 'Exe', 'exe_a' => exe_a, 'exe_b' => exe_b }
+               'failing_rule' => 'Exe' }
     end
 
     # Check Msi rules
@@ -102,9 +102,9 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
 
     # check enforcement mode
     begin
-    if rule1['EnforcementMode'] != rule2['EnforcementMode']
-      return false
-    end
+      if rule1['EnforcementMode'] != rule2['EnforcementMode']
+        return false
+      end
     rescue
       return false
     end
