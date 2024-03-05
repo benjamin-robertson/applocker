@@ -11,11 +11,11 @@
 
 ### Functions
 
-* [`applocker::compare_rules`](#applockercompare_rules): https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
-* [`applocker::extract_rules`](#applockerextract_rules): https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
-* [`applocker::get_id`](#applockerget_id): https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
-* [`applocker::hash_toxml`](#applockerhash_toxml): https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
-* [`applocker::xml_tohash`](#applockerxml_tohash): https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+* [`applocker::compare_rules`](#applockercompare_rules): Compares Windows applocker rules.
+* [`applocker::extract_rules`](#applockerextract_rules): Extract applocker rules
+* [`applocker::get_id`](#applockerget_id): Get ID of existing applocker rules. If no existing rule by that name, a new hash is generated.
+* [`applocker::hash_toxml`](#applockerhash_toxml): Convert hash to xml
+* [`applocker::xml_tohash`](#applockerxml_tohash): XML to hash
 
 ## Classes
 
@@ -155,101 +155,101 @@ private class
 
 Type: Ruby 4.x API
 
-https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+Compares Windows applocker rules.
 
 #### `applocker::compare_rules(Hash $rules, Hash $desired_rules)`
 
-https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+Compares Windows applocker rules.
 
-Returns: `Hash`
+Returns: `Hash` Returns true if match, if no match, false along with which rule failed to match.
 
 ##### `rules`
 
 Data type: `Hash`
 
-
+Existing rules from a host
 
 ##### `desired_rules`
 
 Data type: `Hash`
 
-
+Desired applocker rules from Puppet manifest.
 
 ### <a name="applockerextract_rules"></a>`applocker::extract_rules`
 
 Type: Ruby 4.x API
 
-https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+Extract applocker rules
 
 #### `applocker::extract_rules(Hash $rules)`
 
-https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+Extract applocker rules
 
-Returns: `Hash`
+Returns: `Hash` Hash of all applocker rules in policy along with the rule hash.
 
 ##### `rules`
 
 Data type: `Hash`
 
-
+Applocker rules to extract
 
 ### <a name="applockerget_id"></a>`applocker::get_id`
 
 Type: Ruby 4.x API
 
-https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+Get ID of existing applocker rules. If no existing rule by that name, a new hash is generated.
 
 #### `applocker::get_id(Hash $applocker_rules, Hash $name_to_id)`
 
-https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+Get ID of existing applocker rules. If no existing rule by that name, a new hash is generated.
 
-Returns: `Hash`
+Returns: `Hash` Hash with rulename to rule mapping.
 
 ##### `applocker_rules`
 
 Data type: `Hash`
 
-
+Applocker rules to check from Puppet catalog
 
 ##### `name_to_id`
 
 Data type: `Hash`
 
-
+Name to ID mapping to check.
 
 ### <a name="applockerhash_toxml"></a>`applocker::hash_toxml`
 
 Type: Ruby 4.x API
 
-https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+Convert hash to xml
 
 #### `applocker::hash_toxml(Hash $hash_val)`
 
-https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+Convert hash to xml
 
-Returns: `String`
+Returns: `String` XML string
 
 ##### `hash_val`
 
 Data type: `Hash`
 
-
+Hash to convert to XML
 
 ### <a name="applockerxml_tohash"></a>`applocker::xml_tohash`
 
 Type: Ruby 4.x API
 
-https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+XML to hash
 
 #### `applocker::xml_tohash(String $xml_content)`
 
-https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+XML to hash
 
-Returns: `Hash`
+Returns: `Hash` Hash converted from XML
 
 ##### `xml_content`
 
 Data type: `String`
 
-
+XML to convert to hash
 

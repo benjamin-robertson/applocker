@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
-# https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+# Compares Windows applocker rules.
 Puppet::Functions.create_function(:"applocker::compare_rules") do
+  # @param rules Existing rules from a host
+  # @param desired_rules Desired applocker rules from Puppet manifest.
+  # @return [Hash] Returns true if match, if no match, false along with which rule failed to match.
   dispatch :compare_rules do
     param 'Hash', :rules
     param 'Hash', :desired_rules

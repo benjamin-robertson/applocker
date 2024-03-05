@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-# https://github.com/puppetlabs/puppet-specifications/blob/master/language/func-api.md#the-4x-api
+# Extract applocker rules
 Puppet::Functions.create_function(:"applocker::extract_rules") do
+  # @param rules Applocker rules to extract
+  # @return [Hash] Hash of all applocker rules in policy along with the rule hash.
   dispatch :extract_rules do
     param 'Hash', :rules
     return_type 'Hash'

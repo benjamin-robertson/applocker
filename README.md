@@ -1,6 +1,6 @@
 # applocker
 
-A Puppet module which configures applocker on Windows (Application whitelisting). For information about applocker see [Here][2]
+A Puppet module which configures applocker on Windows (Application whitelisting). For information about applocker see [here][2]
 
 ## Setup requirements
 
@@ -8,7 +8,7 @@ benjaminrobertson-applocker requires the xml-simple ruby gem installed on the Pu
 ```
 puppetserver gem install xml-simple
 ```
-As root on the Puppet Primary server. If the gem is not install the module will not work. 
+As root on the Puppet Primary server. If the gem is not installed module will not work. 
 
 **Note:** When Puppet attempts to enable applocker for the first time, an error will be logged in the Puppet logs. `Error: Cannot enable AppIDSvc, error was: undefined method 'windows' for Puppet::Util:Module` Applocker is running regardless of this error. 
 
@@ -27,9 +27,9 @@ As root on the Puppet Primary server. If the gem is not install the module will 
 
 ### What applocker affects
 
-benjaminrobertson-applocker configure Windows applocker service. Applocker enforces applications whitelisting. 
+benjaminrobertson-applocker configures Windows applocker service. Applocker enforces applications whitelisting. 
 
-**Warning: ensure applocker policies are first tested on a test host. You can very easily break systems by enforcing strict applocker policies.**
+**Warning:** ensure applocker policies are first tested on a non-production host. You can very easily break systems by enforcing strict applocker policies.
 
 I suggest applying applocker policies in 'AuditOnly' mode (modules default). Use Windows event viewer to check for unexpected applocker denies. [EventId's][3]
 
@@ -40,7 +40,7 @@ Include applocker module
 include applocker
 ```
 
-**Note:** If generating a hash for an executable, you cannot use a standard SHA256 filehash. Microsoft uses an [Authenticode][4] hash. Generate one by running in powershell.
+**Note:** If generating a hash for an executable, you cannot use a standard SHA256 filehash. Microsoft uses [Authenticode][4] hash. Generate one by running in powershell.
 ```
 Get-AppLockerFileInformation .\putty.exe | Format-wide -Property hash -AutoSize
 ```
@@ -245,6 +245,17 @@ applocker::dll_applocker_rules:
     type: "Dll"
     user_or_group_sid: "S-1-1-0"
 ```
+
+### Enabling applocker rules
+
+Applocker rules can be enabled or disabled by setting Enum['Enabled','AuditOnly'] for the following parameters
+
+* executable_rules
+* msi_rules
+* dll_rules
+* script_rules
+* packaged_app_rules
+
 
 ## Limitations
 
