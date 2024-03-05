@@ -88,8 +88,6 @@ class applocker (
     require => File['policy file'],
   }
 
-  notify { "computer rules: ${hash_policy}": }
-  notify { "proposed rules: ${proposed_rules}": }
   $rule_check_results = applocker::compare_rules($hash_policy, $proposed_rules)
   if $rule_check_results['Result'] == false {
     notify { "Rules don\'t match. Results ${rule_check_results}": }
