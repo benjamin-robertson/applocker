@@ -10,9 +10,6 @@ describe :applocker_rules, type: :fact do
   before :each do
     # perform any action that should be run before every test
     Facter.clear
-    powershell = 'C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe'
-    command = 'Get-ApplockerPolicy -Effective -xml'
-
     allow(Facter::Core::Execution).to receive(:execute).and_return('<AppLockerPolicy Version="1" />')
   end
 
