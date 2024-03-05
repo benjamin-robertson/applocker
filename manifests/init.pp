@@ -64,30 +64,21 @@ class applocker (
     'packaged_app_rules'         => $packaged_app_rules, }),
   }
   # check length of rules. If all rules are empty use default empty rule string
-  notify { "lenght is ${exec_applocker_rules.length}":}
-  $proposed_rules = applocker::xml_tohash(epp('applocker/xmlrule.epp', {
-        'exec_applocker_rules'   => $exec_applocker_rules_with_id,
-        'msi_applocker_rules'    => $msi_applocker_rules_with_id,
-        'appx_applocker_rules'   => $appx_applocker_rules_with_id,
-        'script_applocker_rules' => $script_applocker_rules_with_id,
-        'dll_applocker_rules'    => $dll_applocker_rules_with_id,
-        'executable_rules'       => $executable_rules,
-        'msi_rules'              => $msi_rules,
-        'dll_rules'              => $dll_rules,
-        'script_rules'           => $script_rules,
-  'packaged_app_rules'           => $packaged_app_rules, }))
-
-  $raw_epp = epp('applocker/xmlrule.epp', {
-        'exec_applocker_rules'   => $exec_applocker_rules_with_id,
-        'msi_applocker_rules'    => $msi_applocker_rules_with_id,
-        'appx_applocker_rules'   => $appx_applocker_rules_with_id,
-        'script_applocker_rules' => $script_applocker_rules_with_id,
-        'dll_applocker_rules'    => $dll_applocker_rules_with_id,
-        'executable_rules'       => $executable_rules,
-        'msi_rules'              => $msi_rules,
-        'dll_rules'              => $dll_rules,
-        'script_rules'           => $script_rules,
-  'packaged_app_rules'           => $packaged_app_rules, })
+  if $exec_applocker_rules.length == 0 and $msi_applocker_rules.length == 0 and $appx_applocker_rules.length == 0 and $script_applocker_rules.length == 0 and $dll_applocker_rules.length == 0 {
+    $proposed_rules = '<AppLockerPolicy Version="1" />'
+  } else {
+    $proposed_rules = applocker::xml_tohash(epp('applocker/xmlrule.epp', {
+          'exec_applocker_rules'   => $exec_applocker_rules_with_id,
+          'msi_applocker_rules'    => $msi_applocker_rules_with_id,
+          'appx_applocker_rules'   => $appx_applocker_rules_with_id,
+          'script_applocker_rules' => $script_applocker_rules_with_id,
+          'dll_applocker_rules'    => $dll_applocker_rules_with_id,
+          'executable_rules'       => $executable_rules,
+          'msi_rules'              => $msi_rules,
+          'dll_rules'              => $dll_rules,
+          'script_rules'           => $script_rules,
+    'packaged_app_rules'           => $packaged_app_rules, }))
+  }
 
   # Verify applocker policy defined by user is valid.
   exec { 'Verify applocker policy failed':
@@ -99,7 +90,6 @@ class applocker (
 
   notify { "computer rules: ${hash_policy}": }
   notify { "proposed rules: ${proposed_rules}": }
-  notify { "raw epp: ${raw_epp}": }
   $rule_check_results = applocker::compare_rules($hash_policy, $proposed_rules)
   if $rule_check_results['Result'] == false {
     notify { "Rules don\'t match. Results ${rule_check_results}": }
