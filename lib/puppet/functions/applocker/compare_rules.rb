@@ -100,6 +100,9 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
       return false
     end
     rescue
+      if rule1.hash == rule2.hash
+        return true
+      end
       return false
     end
 
