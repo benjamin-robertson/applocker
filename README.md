@@ -8,6 +8,15 @@
 
 Must restart server after
 
+#### Error when starting service
+Cannot enable AppIDSvc, error was: undefined method `windows' for Puppet::Util:Module
+
+Wrapped exception:
+
+undefined method `windows' for Puppet::Util:Module
+
+
+
 ### starting the applocker service
 Reports a failure even when its actaully sucessful.
 
