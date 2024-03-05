@@ -30,19 +30,15 @@ class applocker (
   Boolean                     $start_service          = true,
 ) {
   $hash_policy = applocker::xml_tohash($facts['applocker_rules'])
-  # notify { "Hash_policy: ${hash_policy}": }
 
   # Break down structure using function, We want to retrieve all the names of each rules type and return
   $rule_results = applocker::extract_rules($hash_policy)
-  # notify { "Rules_results: ${rule_results}": }
 
   # Check if we have any rules set
   $rule_results_final = $rule_results.dig('name_to_id') ? {
     undef   => {},
     default => $rule_results['name_to_id'],
   }
-  # notify { "defined check: ${$rule_results.dig('name_to_id')}": }
-  # notify { "rule_results_final: ${rule_results_final}": }
 
   # Generate id for each rule, or get from existing rule. 
   $exec_applocker_rules_with_id = applocker::get_id($exec_applocker_rules, $rule_results_final)
@@ -109,13 +105,5 @@ class applocker (
   file { 'c:\temp\policies':
     ensure  => directory,
   }
-  # file { 'c:\temp\policies\facts.txt':
-  #   ensure  => file,
-  #   content => "${hash_policy['RuleCollection']}",
-  # }
-  # file { 'c:\temp\policies\template.txt':
-  #   ensure  => file,
-  #   content => "${proposed_rules['RuleCollection']}",
-  # }
 }
 # lint:endignore
