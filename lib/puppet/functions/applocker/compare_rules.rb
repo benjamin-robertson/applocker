@@ -95,7 +95,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
   def rule_comparison(rule1, rule2)
     matched = false
 
-    # confirm we are not check the same hash
+    # confirm we are not checking the same hash
     if rule1.hash == rule2.hash
       return true
     end
