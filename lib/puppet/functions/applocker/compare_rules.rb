@@ -87,6 +87,7 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
         return element
       end
     end
+    {} # we did not match anything return empty string
   rescue
     { 'EnforcementMode' => 'no_match' }
   end
