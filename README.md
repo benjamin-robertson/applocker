@@ -48,7 +48,7 @@ Set applocker rules using hiera data as follows. Customise as required for your 
 ```
 applocker::exec_applocker_rules:
   Exec %windir/%:
-    ensure: "present" # No longer required. We can leave option in for backwards support
+    ensure: "present" # No longer required. Can leave option in for backwards support
     action: "Allow"
     conditions:
       path: "%WINDIR%\\*"
@@ -60,7 +60,7 @@ applocker::exec_applocker_rules:
       - '%WINDIR%\Temp\*'
     description: "Allow all users to run apps in windir"
     rule_type: "path"
-    type: "Exe" # Not required, we know its a exe rule. We can leave option in for backwards support
+    type: "Exe" # Not required, we know its a exe rule. Can leave option in for backwards support
     user_or_group_sid: "S-1-1-0"
   Exec %%PROGRAMFILES/%:
     action: "Allow"
