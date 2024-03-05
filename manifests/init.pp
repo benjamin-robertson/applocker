@@ -65,7 +65,7 @@ class applocker (
   }
   # check length of rules. If all rules are empty use default empty rule string
   if $exec_applocker_rules.length == 0 and $msi_applocker_rules.length == 0 and $appx_applocker_rules.length == 0 and $script_applocker_rules.length == 0 and $dll_applocker_rules.length == 0 {
-    $proposed_rules = '<AppLockerPolicy Version="1" />'
+    $proposed_rules = applocker::xml_tohash('<AppLockerPolicy Version="1" />')
   } else {
     $proposed_rules = applocker::xml_tohash(epp('applocker/xmlrule.epp', {
           'exec_applocker_rules'   => $exec_applocker_rules_with_id,
