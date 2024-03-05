@@ -95,7 +95,11 @@ Puppet::Functions.create_function(:"applocker::compare_rules") do
     matched = false
 
     # check enforcement mode
+    begin
     if rule1['EnforcementMode'] != rule2['EnforcementMode']
+      return false
+    end
+    rescue
       return false
     end
 
