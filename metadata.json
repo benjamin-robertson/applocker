@@ -5,6 +5,8 @@
   "summary": "Configured applocker (Applications whitelisting) for Windows",
   "license": "Apache-2.0",
   "source": "https://github.com/benjamin-robertson/applocker",
+  "project_page": "https://github.com/benjamin-robertson/applocker",
+  "issues_url": "https://github.com/benjamin-robertson/applocker/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
