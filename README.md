@@ -4,13 +4,9 @@ A Puppet module which configures applocker on Windows (Application whitelisting)
 
 ## Setup requirements
 
-benjaminrobertson-applocker requires the xml-simple ruby gem installed on the Puppet Primary server. Install by running 
-```
-puppetserver gem install xml-simple
-```
-As root on the Puppet Primary server. If the gem is not installed module will not work. 
+benjaminrobertson-applocker requires the xml-simple ruby gem installed on the Puppet Primary server. Install by running `puppetserver gem install xml-simple` as root on the Puppet Primary server. If the gem is not installed the module will not work. 
 
-**Note:** When Puppet attempts to enable applocker for the first time, an error will be logged in the Puppet logs. `Error: Cannot enable AppIDSvc, error was: undefined method 'windows' for Puppet::Util:Module` Applocker is running regardless of this error. 
+**Note:** When Puppet attempts to enable applocker service for the first time, this error will be seen in the Puppet logs. `Error: Cannot enable AppIDSvc, error was: undefined method 'windows' for Puppet::Util:Module` Applocker is running regardless of this error. 
 
 ## Table of Contents
 
@@ -29,7 +25,7 @@ As root on the Puppet Primary server. If the gem is not installed module will no
 
 benjaminrobertson-applocker configures Windows applocker service. Applocker enforces applications whitelisting. 
 
-**Warning:** ensure applocker policies are first tested on a non-production host. You can very easily break systems by enforcing strict applocker policies.
+**Warning:** Ensure applocker policies are first tested on a non-production host. You can very easily break systems by enforcing strict applocker policies.
 
 I suggest applying applocker policies in 'AuditOnly' mode (modules default). Use Windows event viewer to check for unexpected applocker denies. [EventId's][3]
 
