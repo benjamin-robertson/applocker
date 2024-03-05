@@ -102,13 +102,5 @@ class applocker (
   if $start_service {
     include applocker::service
   }
-
-  file { 'c:\temp':
-    ensure => directory,
-  }
-
-  file { 'c:\temp\policies':
-    ensure  => directory,
-  }
 }
 # lint:endignore
