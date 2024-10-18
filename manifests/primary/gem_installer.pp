@@ -6,5 +6,6 @@ class applocker::primary::gem_installer {
   package { 'xml-simple':
     ensure   => 'present',
     provider => 'puppetserver_gem',
+    notify   => Service['pe-puppetserver'],
   }
 }
