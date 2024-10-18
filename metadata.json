@@ -1,6 +1,6 @@
 {
   "name": "benjaminrobertson-applocker",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "author": "benjaminrobertson",
   "summary": "Configures applocker (Applications whitelisting) for Windows",
   "license": "Apache-2.0",
@@ -20,7 +20,8 @@
         "2016",
         "2019",
         "2022",
-        "10"
+        "10",
+        "11"
       ]
     }
   ],
@@ -30,7 +31,7 @@
       "version_requirement": ">= 6.21.0 < 9.0.0"
     }
   ],
-  "pdk-version": "3.0.0",
-  "template-url": "pdk-default#3.0.0",
-  "template-ref": "tags/3.0.0-0-g056e50d"
+  "pdk-version": "3.3.0",
+  "template-url": "pdk-default#3.3.0",
+  "template-ref": "tags/3.3.0-0-g5d17ec1"
 }

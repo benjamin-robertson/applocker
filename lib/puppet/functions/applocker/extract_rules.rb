@@ -39,26 +39,20 @@ Puppet::Functions.create_function(:"applocker::extract_rules") do
     # Loop through Rules and populate hash values
     rules['RuleCollection'].each do |array|
       rule_status[array['Type']] = array['EnforcementMode']
-      if array['FilePathRule']
-        array['FilePathRule'].each do |value|
-          hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
-          rule_hash[array['Type']].push(hash_tmp)
-          name_to_id[value['Name']] = value['Id']
-        end
+      array['FilePathRule']&.each do |value|
+        hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
+        rule_hash[array['Type']].push(hash_tmp)
+        name_to_id[value['Name']] = value['Id']
       end
-      if array['FilePublisherRule']
-        array['FilePublisherRule'].each do |value|
-          hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
-          rule_hash[array['Type']].push(hash_tmp)
-          name_to_id[value['Name']] = value['Id']
-        end
+      array['FilePublisherRule']&.each do |value|
+        hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
+        rule_hash[array['Type']].push(hash_tmp)
+        name_to_id[value['Name']] = value['Id']
       end
-      if array['FileHashRule']
-        array['FileHashRule'].each do |value|
-          hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
-          rule_hash[array['Type']].push(hash_tmp)
-          name_to_id[value['Name']] = value['Id']
-        end
+      array['FileHashRule']&.each do |value|
+        hash_tmp = { 'name' => value['Name'], 'id' => value['Id'] }
+        rule_hash[array['Type']].push(hash_tmp)
+        name_to_id[value['Name']] = value['Id']
       end
     end
     return_hash = { 'rule_status' => rule_status, 'rule_hash' => rule_hash, 'name_to_id' => name_to_id }
