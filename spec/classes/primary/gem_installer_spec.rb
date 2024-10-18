@@ -6,6 +6,11 @@ describe 'applocker::primary::gem_installer' do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
+      let(:pre_condition) do
+        'service { \'pe-puppetserver\' :
+          ensure => running,
+        }'
+      end
 
       it { is_expected.to compile.with_all_deps }
 
