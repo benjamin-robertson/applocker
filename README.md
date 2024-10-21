@@ -270,7 +270,7 @@ Applocker rules can be enabled or disabled by setting Enum['Enabled','AuditOnly'
 
 ## Limitations
 
-* Developed on Puppet Enterprise 2021.7.6 and Windows 2019
+* Developed and tested with Puppet Enterprise 2021.7.6, 2023.8.0 and Windows 2019 and 2022.
 * Expected to work with all modern versions of Puppet and Windows.
 
 ## Development
