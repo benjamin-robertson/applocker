@@ -1,6 +1,6 @@
 # applocker
 
-A Puppet module which configures applocker on Windows (Application whitelisting). For information about applocker see [here][2]
+A Puppet module which configures applocker on Windows (Application whitelisting). For information about applocker see [here][2].
 
 ## Setup requirements
 
@@ -8,10 +8,10 @@ benjaminrobertson-applocker requires the xml-simple ruby gem installed on the Pu
 
 ### Via Puppet manifest
 
-Applocker module since 1.0.0 includes a Puppet class to install the xml-simple gem into your Puppet infrastructure. 
+Applocker module since 1.0.0 includes a Puppet class to install the xml-simple gem on your Puppet infrastructure. 
 
 1. Within the PE console, navigate to "Node Groups".
-1. Locate the "PE Infrastructure Agent" node group and click into it. **Hint:** its under "All Nodes\PE Infrastructure\PE Agent". 
+1. Locate the "PE Infrastructure Agent" node group and click into it. **Hint:** its under "All Nodes\PE Infrastructure\PE Agent".
 1. Under the classes tab, add the class "applocker::primary::gem_installer". Commit the change.
 1. Run Puppet on every PE infrastructure component. **Note:** This will restart the pe-puppetserver.
 
@@ -20,8 +20,6 @@ Applocker module since 1.0.0 includes a Puppet class to install the xml-simple g
 ### Manually via command line
 
 1. Install by running `puppetserver gem install xml-simple` as root on the Puppet Primary server and other PE infrastructure components.
-
-**Note:** When Puppet attempts to enable applocker service for the first time, this error will be seen in the Puppet logs. `Error: Cannot enable AppIDSvc, error was: undefined method 'windows' for Puppet::Util:Module` Applocker is running regardless of this error. 
 
 ## Table of Contents
 
@@ -43,6 +41,8 @@ benjaminrobertson-applocker configures Windows applocker service. Applocker enfo
 **Warning:** Ensure applocker policies are first tested on a non-production host. You can very easily break systems by enforcing strict applocker policies.
 
 I suggest applying applocker policies in 'AuditOnly' mode (modules default). Use Windows event viewer to check for unexpected applocker denies. [EventId's][3]
+
+**Note:** When Puppet attempts to enable applocker service for the first time, this error will be seen in the Puppet logs. `Error: Cannot enable AppIDSvc, error was: undefined method 'windows' for Puppet::Util:Module` Applocker is running regardless of this error. 
 
 ## Usage
 
