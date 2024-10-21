@@ -4,7 +4,7 @@ A Puppet module which configures applocker on Windows (Application whitelisting)
 
 ## Setup requirements
 
-benjaminrobertson-applocker requires the xml-simple ruby gem installed on the Puppet Primary server, compilers and replica. The module will not function without this gem. This can be installed by the following methods.
+benjaminrobertson-applocker requires the xml-simple ruby gem installed on the Puppet Primary server, compilers and replica. The module will not function without this gem. It can be installed using the following methods.
 
 ### Via Puppet manifest
 
