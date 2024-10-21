@@ -7,15 +7,16 @@
 ### Classes
 
 * [`applocker`](#applocker): Set applocker rules for windows
-* [`applocker::service`](#applockerservice): Starts applocker service
+* [`applocker::primary::gem_installer`](#applocker--primary--gem_installer): Installs XML simple gem on primary server
+* [`applocker::service`](#applocker--service): Starts applocker service
 
 ### Functions
 
-* [`applocker::compare_rules`](#applockercompare_rules): Compares Windows applocker rules.
-* [`applocker::extract_rules`](#applockerextract_rules): Extract applocker rules
-* [`applocker::get_id`](#applockerget_id): Get ID of existing applocker rules. If no existing rule by that name, a new hash is generated.
-* [`applocker::hash_toxml`](#applockerhash_toxml): Convert hash to xml
-* [`applocker::xml_tohash`](#applockerxml_tohash): XML to hash
+* [`applocker::compare_rules`](#applocker--compare_rules): Compares Windows applocker rules.
+* [`applocker::extract_rules`](#applocker--extract_rules): Extract applocker rules
+* [`applocker::get_id`](#applocker--get_id): Get ID of existing applocker rules. If no existing rule by that name, a new hash is generated.
+* [`applocker::hash_toxml`](#applocker--hash_toxml): Convert hash to xml
+* [`applocker::xml_tohash`](#applocker--xml_tohash): XML to hash
 
 ## Classes
 
@@ -37,19 +38,19 @@ include applocker
 
 The following parameters are available in the `applocker` class:
 
-* [`exec_applocker_rules`](#exec_applocker_rules)
-* [`msi_applocker_rules`](#msi_applocker_rules)
-* [`appx_applocker_rules`](#appx_applocker_rules)
-* [`script_applocker_rules`](#script_applocker_rules)
-* [`dll_applocker_rules`](#dll_applocker_rules)
-* [`executable_rules`](#executable_rules)
-* [`msi_rules`](#msi_rules)
-* [`dll_rules`](#dll_rules)
-* [`script_rules`](#script_rules)
-* [`packaged_app_rules`](#packaged_app_rules)
-* [`start_service`](#start_service)
+* [`exec_applocker_rules`](#-applocker--exec_applocker_rules)
+* [`msi_applocker_rules`](#-applocker--msi_applocker_rules)
+* [`appx_applocker_rules`](#-applocker--appx_applocker_rules)
+* [`script_applocker_rules`](#-applocker--script_applocker_rules)
+* [`dll_applocker_rules`](#-applocker--dll_applocker_rules)
+* [`executable_rules`](#-applocker--executable_rules)
+* [`msi_rules`](#-applocker--msi_rules)
+* [`dll_rules`](#-applocker--dll_rules)
+* [`script_rules`](#-applocker--script_rules)
+* [`packaged_app_rules`](#-applocker--packaged_app_rules)
+* [`start_service`](#-applocker--start_service)
 
-##### <a name="exec_applocker_rules"></a>`exec_applocker_rules`
+##### <a name="-applocker--exec_applocker_rules"></a>`exec_applocker_rules`
 
 Data type: `Hash`
 
@@ -57,7 +58,7 @@ Exec applocker rules to configure.
 
 Default value: `{}`
 
-##### <a name="msi_applocker_rules"></a>`msi_applocker_rules`
+##### <a name="-applocker--msi_applocker_rules"></a>`msi_applocker_rules`
 
 Data type: `Hash`
 
@@ -65,7 +66,7 @@ msi applocker rules to configure.
 
 Default value: `{}`
 
-##### <a name="appx_applocker_rules"></a>`appx_applocker_rules`
+##### <a name="-applocker--appx_applocker_rules"></a>`appx_applocker_rules`
 
 Data type: `Hash`
 
@@ -73,7 +74,7 @@ Packaged app rules to configure.
 
 Default value: `{}`
 
-##### <a name="script_applocker_rules"></a>`script_applocker_rules`
+##### <a name="-applocker--script_applocker_rules"></a>`script_applocker_rules`
 
 Data type: `Hash`
 
@@ -81,7 +82,7 @@ scipt applocker rules to configure.
 
 Default value: `{}`
 
-##### <a name="dll_applocker_rules"></a>`dll_applocker_rules`
+##### <a name="-applocker--dll_applocker_rules"></a>`dll_applocker_rules`
 
 Data type: `Hash`
 
@@ -89,7 +90,7 @@ dll applocker rules to configure.
 
 Default value: `{}`
 
-##### <a name="executable_rules"></a>`executable_rules`
+##### <a name="-applocker--executable_rules"></a>`executable_rules`
 
 Data type: `Enum['Enabled','AuditOnly']`
 
@@ -97,7 +98,7 @@ Mode for executable rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
 
 Default value: `'AuditOnly'`
 
-##### <a name="msi_rules"></a>`msi_rules`
+##### <a name="-applocker--msi_rules"></a>`msi_rules`
 
 Data type: `Enum['Enabled','AuditOnly']`
 
@@ -105,7 +106,7 @@ Mode for msi rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
 
 Default value: `'AuditOnly'`
 
-##### <a name="dll_rules"></a>`dll_rules`
+##### <a name="-applocker--dll_rules"></a>`dll_rules`
 
 Data type: `Enum['Enabled','AuditOnly']`
 
@@ -113,7 +114,7 @@ Mode for dll rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
 
 Default value: `'AuditOnly'`
 
-##### <a name="script_rules"></a>`script_rules`
+##### <a name="-applocker--script_rules"></a>`script_rules`
 
 Data type: `Enum['Enabled','AuditOnly']`
 
@@ -121,7 +122,7 @@ Mode for script rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
 
 Default value: `'AuditOnly'`
 
-##### <a name="packaged_app_rules"></a>`packaged_app_rules`
+##### <a name="-applocker--packaged_app_rules"></a>`packaged_app_rules`
 
 Data type: `Enum['Enabled','AuditOnly']`
 
@@ -129,15 +130,27 @@ Mode for packaged app rules, Enum['Enabled','AuditOnly'] Default: AuditOnly.
 
 Default value: `'AuditOnly'`
 
-##### <a name="start_service"></a>`start_service`
+##### <a name="-applocker--start_service"></a>`start_service`
 
 Data type: `Boolean`
 
 Whether to start the applocker service. Default: true
 
-Default value: ``true``
+Default value: `true`
 
-### <a name="applockerservice"></a>`applocker::service`
+### <a name="applocker--primary--gem_installer"></a>`applocker::primary::gem_installer`
+
+Installs XML simple gem on primary server
+
+#### Examples
+
+##### 
+
+```puppet
+include applocker::primary::gem_installer
+```
+
+### <a name="applocker--service"></a>`applocker::service`
 
 Starts applocker service
 
@@ -151,7 +164,7 @@ private class
 
 ## Functions
 
-### <a name="applockercompare_rules"></a>`applocker::compare_rules`
+### <a name="applocker--compare_rules"></a>`applocker::compare_rules`
 
 Type: Ruby 4.x API
 
@@ -175,7 +188,7 @@ Data type: `Hash`
 
 Desired applocker rules from Puppet manifest.
 
-### <a name="applockerextract_rules"></a>`applocker::extract_rules`
+### <a name="applocker--extract_rules"></a>`applocker::extract_rules`
 
 Type: Ruby 4.x API
 
@@ -193,7 +206,7 @@ Data type: `Hash`
 
 Applocker rules to extract
 
-### <a name="applockerget_id"></a>`applocker::get_id`
+### <a name="applocker--get_id"></a>`applocker::get_id`
 
 Type: Ruby 4.x API
 
@@ -217,7 +230,7 @@ Data type: `Hash`
 
 Name to ID mapping to check.
 
-### <a name="applockerhash_toxml"></a>`applocker::hash_toxml`
+### <a name="applocker--hash_toxml"></a>`applocker::hash_toxml`
 
 Type: Ruby 4.x API
 
@@ -235,7 +248,7 @@ Data type: `Hash`
 
 Hash to convert to XML
 
-### <a name="applockerxml_tohash"></a>`applocker::xml_tohash`
+### <a name="applocker--xml_tohash"></a>`applocker::xml_tohash`
 
 Type: Ruby 4.x API
 

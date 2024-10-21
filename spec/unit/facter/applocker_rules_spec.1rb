@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# will fail on non-windows hosts. Disabled test.
+
 require 'spec_helper'
 require 'facter'
 require 'facter/applocker_rules'
